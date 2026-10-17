@@ -60,6 +60,15 @@ HelloControllerTests > infoReturnsJson() PASSED
 
 ## CI
 
-GitHub Actions 결과는 아래에 기록한다.
+| 항목 | 값 |
+|---|---|
+| 워크플로 | `build` (PR #1, `pull_request`) |
+| 실행 | https://github.com/devguna81/spring-boot-curriculum/actions/runs/38996455608 |
+| 대상 커밋 | `654d794dc1a3740893f0a20c9b618f47d88add2f` (PR head) |
+| 환경 | ubuntu-latest, Temurin 21.0.12, Gradle 9.8.1 |
+| 결과 | 성공 (48초) |
+| 테스트 | 로그에서 4건 모두 `PASSED` 확인 (초록불만 보고 판단하지 않고 로그를 직접 확인) |
 
-CI 결과: (기록 예정)
+예제 코드는 검증 대상 커밋 `61a3bb1` 이후 변경이 없다. 이후 커밋은 문서만 바꿨다.
+
+CI 경고(실패 아님): `actions/setup-java@v4` 등이 Node.js 20 기반이라 deprecated 안내가 나온다. 최신은 setup-java v6, checkout v7이며, 별도 정비 대상으로 남긴다.

@@ -17,13 +17,13 @@
 | 항목 | 값 |
 |---|---|
 | 제목 | Hello Spring Boot |
-| 상태 | DRAFT_READY |
+| 상태 | DRAFT_READY (PR #1 머지 전, 사용자 검토 대기) |
 | 예제 코드 | `examples/ch01-hello-spring` |
 | 문서 | `docs/chapters/ch01/README.md`, `blog-draft.md`, `verification.md` |
 | 빌드 결과 | `./gradlew --no-daemon clean build` BUILD SUCCESSFUL (Docker, JDK 21.0.11) |
 | 테스트 결과 | 4건 중 4건 통과 |
 | 검증 Commit SHA | `61a3bb118238a2f9e8632802c81844f48e9018cc` |
-| CI 결과 | 확인 중 (verification.md 참조) |
+| CI 결과 | 성공 - [run 38996455608](https://github.com/devguna81/spring-boot-curriculum/actions/runs/38996455608), 테스트 4건 통과를 로그로 확인 (PR #1, 커밋 `654d794`) |
 | 블로그 게시 상태 | 미게시 |
 | 블로그 게시 URL | - |
 
