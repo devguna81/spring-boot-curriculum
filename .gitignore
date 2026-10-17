@@ -32,6 +32,8 @@ Thumbs.db
 *.log
 .env
 .env.*
+# 화면 예제의 공개 설정(API 주소)은 비밀값이 아니라서 추적한다.
+!examples/*/frontend/.env.development
 application-local.yml
 application-local.properties
 application-oracle-local.yml

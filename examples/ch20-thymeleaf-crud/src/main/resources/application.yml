@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ch20-thymeleaf-crud
+  thymeleaf:
+    cache: false
+server:
+  servlet:
+    session:
+      # Flash 속성은 세션에 저장된다. 쿠키가 아직 없는 첫 요청의 redirect 주소에 ;jsessionid= 가 붙지 않게 쿠키만 쓴다.
+      tracking-modes: cookie

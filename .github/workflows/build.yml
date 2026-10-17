@@ -88,3 +88,27 @@ jobs:
           name: oracle-test-reports
           path: '**/build/reports/tests/test'
           if-no-files-found: ignore
+
+  frontend:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - examples/ch21-react-basics
+          - examples/ch22-react-rest/frontend
+    defaults:
+      run:
+        working-directory: ${{ matrix.project }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

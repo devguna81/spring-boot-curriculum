@@ -276,6 +276,39 @@ curl http://localhost:8080/v3/api-docs
 ./gradlew :examples:ch18-api-contract:test -Dcontract.update=true
 ```
 
+#### 화면 보기 (Chapter 19, 20)
+
+```bash
+./gradlew :examples:ch19-thymeleaf:bootRun
+# 브라우저에서 http://localhost:8080/users
+
+./gradlew :examples:ch20-thymeleaf-crud:bootRun
+# 브라우저에서 http://localhost:8080/users (목록에서 등록, 수정, 삭제)
+```
+
+#### React 화면 (Chapter 21)
+
+Node 22.12 이상이 필요합니다. Gradle이 아니라 npm으로 실행합니다.
+
+```bash
+cd examples/ch21-react-basics
+npm ci
+npm run dev      # http://localhost:5173
+npm test
+```
+
+#### React와 REST API (Chapter 22)
+
+백엔드와 화면을 따로 실행합니다.
+
+```bash
+./gradlew :examples:ch22-react-rest:bootRun        # 터미널 1: http://localhost:8080
+
+cd examples/ch22-react-rest/frontend                 # 터미널 2
+npm ci
+npm run dev                                          # http://localhost:5173
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -343,10 +376,10 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch16. DTO, Domain, MapStruct** | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | [`examples/ch16-mapstruct`](examples/ch16-mapstruct) |
 | **ch17. OpenAPI와 Swagger UI** | springdoc, 애노테이션, Swagger UI | [`examples/ch17-openapi`](examples/ch17-openapi) |
 | **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | [`examples/ch18-api-contract`](examples/ch18-api-contract) |
-| **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | - |
-| **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | - |
-| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | - |
-| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | - |
+| **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | [`examples/ch19-thymeleaf`](examples/ch19-thymeleaf) |
+| **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | [`examples/ch20-thymeleaf-crud`](examples/ch20-thymeleaf-crud) |
+| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | [`examples/ch21-react-basics`](examples/ch21-react-basics) |
+| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | [`examples/ch22-react-rest`](examples/ch22-react-rest) |
 | **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - |
 | **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - |
 | **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | - |

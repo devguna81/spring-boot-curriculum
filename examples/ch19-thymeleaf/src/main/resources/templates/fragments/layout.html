@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 공통 조각. 다른 템플릿이 th:replace 로 가져다 쓴다. -->
+<head th:fragment="head(title)">
+  <meta charset="UTF-8">
+  <title th:text="${title} + ' - ch19'">제목</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; }
+    table { border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: .4rem .8rem; }
+    .inactive { color: #999; }
+    nav a { margin-right: 1rem; }
+  </style>
+</head>
+<body>
+<nav th:fragment="nav">
+  <a th:href="@{/users}">전체</a>
+  <a th:href="@{/users(activeOnly=true)}">활성만</a>
+</nav>
+</body>
+</html>

@@ -16,10 +16,14 @@
 | Persistence (확장) | mybatis-plus-spring-boot4-starter + mybatis-plus-jsqlparser | 3.5.17 | ch12 | Boot 4 전용 스타터. 아래 "MyBatis-Plus 검토" 참조 |
 | API 문서 | springdoc-openapi-starter-webmvc-ui | 3.1.1 | ch17 | 부모 POM이 `spring-boot-starter-parent:4.1.0` |
 | Mapping | MapStruct | 1.6.3 | ch16 | 최신 안정판. 1.7.0은 Beta라 제외 |
+| Template | spring-boot-starter-thymeleaf (Thymeleaf 3.1.5) | Boot BOM 관리 | ch19 | 서버 렌더링 화면 |
 | 구조 검사 | ArchUnit | 1.4.1 | ch18 | JUnit 연동 모듈 없이 코어만 사용 |
 | DB (개발) | H2 | Boot BOM 관리 | ch08 | Boot가 버전을 관리 |
 | DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch13 | Java 11+ 용 드라이버, Maven Central 최신 |
-| Frontend | React + Vite | 해당 챕터에서 확정 | ch21 | Node LTS 기준으로 그 시점에 재확인 |
+| Frontend | React / React DOM | 19.3.1 | ch21 | npm 최신 안정판, 정확한 버전 고정 |
+| Frontend 빌드 | Vite / @vitejs/plugin-react | 8.3.4 / 6.1.2 | ch21 | Node 22.12 이상 필요 |
+| Frontend 라우팅 | react-router | 8.4.0 | ch21 | v7부터 `react-router` 패키지로 통합 |
+| Frontend 테스트 | Vitest / jsdom / Testing Library | 5.0.5 / 30.1.3 / react 16.3.3 | ch21 | 사용자 관점 테스트 |
 
 ## Boot 4에서 달라진 점
 
