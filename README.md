@@ -197,6 +197,19 @@ curl "http://localhost:8080/users?keyword=kim&limit=1"
 curl -i http://localhost:8080/users/999   # 404
 ```
 
+#### CRUD API 호출 (Chapter 05)
+
+```bash
+./gradlew :examples:ch05-crud-api:bootRun
+```
+
+```bash
+curl -i -X POST http://localhost:8080/users -H "Content-Type: application/json" \
+  -d '{"name":"kim","email":"kim@example.com","age":28}'
+curl -X PATCH http://localhost:8080/users/1 -H "Content-Type: application/json" -d '{"age":29}'
+curl -i -X DELETE http://localhost:8080/users/1
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -250,7 +263,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | [`examples/ch02-config-profile`](examples/ch02-config-profile) |
 | **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | [`examples/ch03-ioc-di-bean`](examples/ch03-ioc-di-bean) |
 | **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | [`examples/ch04-rest-controller`](examples/ch04-rest-controller) |
-| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
+| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | [`examples/ch05-crud-api`](examples/ch05-crud-api) |
 | **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - |
 | **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | - |
 | **ch08. DataSource와 H2** | DataSource, 커넥션 풀, H2, 초기 스키마/데이터 | - |
