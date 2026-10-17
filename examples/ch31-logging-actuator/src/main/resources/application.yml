@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: ch31-logging-actuator
+
+logging:
+  level:
+    root: INFO
+    # 우리 패키지만 DEBUG로 낮춘다. 라이브러리 로그까지 늘리지 않는다.
+    com.devguna.curriculum.ch31: DEBUG
+  pattern:
+    # %X{requestId}는 MDC에 넣어 둔 요청 번호다. 요청 하나의 로그를 번호로 묶어 찾을 수 있다.
+    console: "%d{HH:mm:ss.SSS} %-5level [%X{requestId:-none}] %logger{20} - %msg%n"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 기본은 health만 노출된다. 필요한 것만 명시해서 연다. env, beans 같은 민감한 정보는 열지 않는다.
+        include: health,info,metrics,loggers
+  endpoint:
+    health:
+      # 학습 확인용으로 세부 상태를 모두 보여 준다. 외부에 노출되는 서버라면 when-authorized 등으로 제한한다.
+      show-details: always
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: ch31-logging-actuator
+    purpose: logging and actuator example
