@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.ch13.UserMapper">
+
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="nickname" column="nickname"/>
+        <result property="age" column="age"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <!-- keyColumn을 소문자로 적어도 Oracle의 대문자 컬럼(ID)과 맞춰 주는지는 실행해서 확인한다. -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO users (name, email, nickname, age)
+        VALUES (#{name}, #{email}, #{nickname}, #{age})
+    </insert>
+
+    <select id="findById" resultMap="userResultMap">
+        SELECT id, name, email, nickname, age, created_at FROM users WHERE id = #{id}
+    </select>
+
+    <!-- OFFSET/FETCH는 표준 SQL이고 Oracle 12c 이상, H2에서 모두 동작한다. -->
+    <select id="findPage" resultMap="userResultMap">
+        SELECT id, name, email, nickname, age, created_at
+        FROM users
+        ORDER BY id
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM users
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM users
+    </delete>
+</mapper>
