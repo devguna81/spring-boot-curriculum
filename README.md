@@ -286,6 +286,17 @@ curl http://localhost:8080/v3/api-docs
 # 브라우저에서 http://localhost:8080/users (목록에서 등록, 수정, 삭제)
 ```
 
+#### React 화면 (Chapter 21)
+
+Node 22.12 이상이 필요합니다. Gradle이 아니라 npm으로 실행합니다.
+
+```bash
+cd examples/ch21-react-basics
+npm ci
+npm run dev      # http://localhost:5173
+npm test
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -355,7 +366,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | [`examples/ch18-api-contract`](examples/ch18-api-contract) |
 | **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | [`examples/ch19-thymeleaf`](examples/ch19-thymeleaf) |
 | **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | [`examples/ch20-thymeleaf-crud`](examples/ch20-thymeleaf-crud) |
-| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | - |
+| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | [`examples/ch21-react-basics`](examples/ch21-react-basics) |
 | **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | - |
 | **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - |
 | **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - |
