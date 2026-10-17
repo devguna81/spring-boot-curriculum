@@ -1,0 +1,16 @@
+# 실행: docker compose -f projects/final-project/docker-compose.yml up --build
+# 데모 계정을 함께 만들려면: SEED_DEMO_DATA=true DEMO_PASSWORD=원하는값(8자 이상) docker compose ... up --build
+# 기본 구성은 메모리 DB(H2)라 컨테이너를 내리면 데이터가 사라진다. Oracle 연결은 README를 본다.
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: projects/final-project/Dockerfile
+    environment:
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-false}
+      # 비밀번호는 파일에 적지 않고 실행할 때 환경 변수로 받는다.
+      DEMO_PASSWORD: ${DEMO_PASSWORD:-}
+    ports:
+      # 호스트에서 8080이 이미 쓰이고 있으면 APP_PORT로 바꾼다.
+      - "${APP_PORT:-8080}:8080"
+    restart: unless-stopped

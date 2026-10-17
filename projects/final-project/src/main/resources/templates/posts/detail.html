@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head(${post.title()})}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav}"></header>
+<main>
+  <h1 th:text="${post.title()}">제목</h1>
+  <p class="meta">
+    <span th:text="${post.authorName()}">작성자</span> ·
+    <span th:text="${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm')}">날짜</span>
+    <span th:if="${post.pinned()}" class="badge">고정</span>
+  </p>
+  <p><span th:each="t : ${post.tags()}" class="tag" th:text="${t}">태그</span></p>
+  <!-- 본문의 줄바꿈은 CSS 로 살린다. HTML 로 해석하지 않고 글자로 보여 준다. -->
+  <div class="content" th:text="${post.content()}">본문</div>
+  <p><a th:href="@{/pages/posts}">목록으로</a></p>
+</main>
+</body>
+</html>

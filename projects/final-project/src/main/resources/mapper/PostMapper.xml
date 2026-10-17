@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.finalproject.post.internal.PostMapper">
+
+    <resultMap id="postRowMap" type="com.devguna.curriculum.finalproject.post.internal.PostRow">
+        <constructor>
+            <idArg column="id" javaType="_long"/>
+            <arg column="title" javaType="string"/>
+            <arg column="author_name" javaType="string"/>
+            <arg column="meta" javaType="com.devguna.curriculum.finalproject.post.internal.PostMeta"
+                 typeHandler="com.devguna.curriculum.finalproject.post.internal.PostMetaTypeHandler"/>
+            <arg column="pinned" javaType="_boolean"/>
+            <arg column="created_at" javaType="java.time.LocalDateTime"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="authorStatMap" type="com.devguna.curriculum.finalproject.contract.AuthorStat">
+        <constructor>
+            <idArg column="author_id" javaType="_long"/>
+            <arg column="author_name" javaType="string"/>
+            <arg column="post_count" javaType="_long"/>
+        </constructor>
+    </resultMap>
+
+    <!-- 조건은 목록과 건수가 같아야 하므로 한 곳에 둔다. 값이 null인 항목은 조건에서 빠진다. -->
+    <sql id="searchConditions">
+        <where>
+            <if test="c.keywordPattern != null">
+                AND (LOWER(p.title) LIKE #{c.keywordPattern} ESCAPE '\'
+                     OR LOWER(p.content) LIKE #{c.keywordPattern} ESCAPE '\')
+            </if>
+            <if test="c.authorId != null">
+                AND p.author_id = #{c.authorId}
+            </if>
+            <if test="c.tag != null">
+                <choose>
+                    <!-- Oracle은 JSON 경로 조건으로 태그 배열 원소를 정확히 비교한다. -->
+                    <when test="_databaseId == 'oracle'">
+                        AND JSON_EXISTS(p.meta, '$.tags[*]?(@ == $t)' PASSING #{c.tag} AS "t")
+                    </when>
+                    <!-- H2의 meta는 CLOB이라 따옴표까지 포함한 "태그" 모양을 문자열로 찾는다. -->
+                    <otherwise>
+                        AND p.meta LIKE #{c.tagPattern} ESCAPE '\'
+                    </otherwise>
+                </choose>
+            </if>
+        </where>
+    </sql>
+
+    <select id="search" resultMap="postRowMap">
+        SELECT p.id, p.title, u.display_name AS author_name, p.meta, p.pinned, p.created_at
+          FROM fp_posts p
+          JOIN fp_users u ON u.id = p.author_id
+        <include refid="searchConditions"/>
+         ORDER BY p.pinned DESC, p.created_at DESC, p.id DESC
+        OFFSET #{c.offset} ROWS FETCH NEXT #{c.size} ROWS ONLY
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*)
+          FROM fp_posts p
+          JOIN fp_users u ON u.id = p.author_id
+        <include refid="searchConditions"/>
+    </select>
+
+    <!-- LEFT JOIN이라 글이 없는 작성자도 0건으로 나온다. -->
+    <select id="authorStats" resultMap="authorStatMap">
+        SELECT u.id AS author_id, u.display_name AS author_name, COUNT(p.id) AS post_count
+          FROM fp_users u
+          LEFT JOIN fp_posts p ON p.author_id = u.id
+         GROUP BY u.id, u.display_name
+         ORDER BY post_count DESC, u.id
+    </select>
+</mapper>

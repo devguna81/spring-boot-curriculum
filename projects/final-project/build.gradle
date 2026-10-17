@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // Boot 4용 MyBatis-Plus 스타터(ch12). 단순 CRUD는 BaseMapper, 복잡한 질의는 XML Mapper로 둔다.
+    implementation 'com.baomidou:mybatis-plus-spring-boot4-starter:3.5.17'
+    implementation 'com.baomidou:mybatis-plus-jsqlparser:3.5.17'
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    // 읽기 전용 서버 렌더링 화면(ch19)과 API 문서(ch17). 쓰기 화면은 React가 맡는다.
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.1.1'
+    // HTTP Basic 인증과 인가(ch30). 비밀번호 해시용 spring-security-crypto도 함께 들어온다.
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 상태 확인과 운영 지표(ch31)
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11:23.26.3.0.0'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    // @WithMockUser, httpBasic() 같은 테스트 지원. spring-security-test만으로는 부족하다(ch30).
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testImplementation 'com.tngtech.archunit:archunit:1.4.1'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    // 매핑되지 않은 필드가 있으면 경고가 아니라 컴파일 오류로 만든다(ch16).
+    options.compilerArgs += ['-Amapstruct.unmappedTargetPolicy=ERROR']
+}

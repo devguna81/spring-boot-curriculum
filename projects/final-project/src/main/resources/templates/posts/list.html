@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('글 목록')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav}"></header>
+<main>
+  <h1>글 목록</h1>
+
+  <form method="get" th:action="@{/pages/posts}" class="search">
+    <label>검색어 <input type="text" name="keyword" th:value="${keyword}"></label>
+    <label>태그 <input type="text" name="tag" th:value="${tag}"></label>
+    <button type="submit">검색</button>
+  </form>
+
+  <p th:text="|전체 ${result.total()}건|">전체 0건</p>
+
+  <table th:if="${!result.items().isEmpty()}">
+    <thead>
+      <tr><th>제목</th><th>작성자</th><th>태그</th><th>작성일</th></tr>
+    </thead>
+    <tbody>
+      <tr th:each="post : ${result.items()}" th:classappend="${post.pinned()} ? 'pinned'">
+        <td>
+          <span th:if="${post.pinned()}" class="badge">고정</span>
+          <!-- th:text 는 HTML 을 이스케이프하므로 제목에 태그가 들어 있어도 글자로 보인다. -->
+          <a th:href="@{/pages/posts/{id}(id=${post.id()})}" th:text="${post.title()}">제목</a>
+        </td>
+        <td th:text="${post.authorName()}">작성자</td>
+        <td><span th:each="t : ${post.tags()}" class="tag" th:text="${t}">태그</span></td>
+        <td th:text="${#temporals.format(post.createdAt(), 'yyyy-MM-dd HH:mm')}">날짜</td>
+      </tr>
+    </tbody>
+  </table>
+  <p th:if="${result.items().isEmpty()}">조건에 맞는 글이 없습니다.</p>
+
+  <nav class="paging" th:if="${totalPages > 1}">
+    <a th:if="${result.page() > 0}"
+       th:href="@{/pages/posts(keyword=${keyword},tag=${tag},page=${result.page() - 1})}">이전</a>
+    <span th:text="|${result.page() + 1} / ${totalPages}|">1 / 1</span>
+    <a th:if="${result.page() + 1 < totalPages}"
+       th:href="@{/pages/posts(keyword=${keyword},tag=${tag},page=${result.page() + 1})}">다음</a>
+  </nav>
+</main>
+</body>
+</html>

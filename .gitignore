@@ -37,3 +37,7 @@ Thumbs.db
 application-local.yml
 application-local.properties
 application-oracle-local.yml
+
+# React 빌드 결과(이미지 빌드 때 생성되어 들어간다)
+projects/final-project/src/main/resources/static/app/
+projects/final-project/frontend/dist/
