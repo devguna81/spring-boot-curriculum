@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch23-layered-solid
