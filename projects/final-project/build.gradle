@@ -8,10 +8,23 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-webmvc'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // Boot 4용 MyBatis-Plus 스타터(ch12). 단순 CRUD는 BaseMapper, 복잡한 질의는 XML Mapper로 둔다.
+    implementation 'com.baomidou:mybatis-plus-spring-boot4-starter:3.5.17'
+    implementation 'com.baomidou:mybatis-plus-jsqlparser:3.5.17'
+    implementation 'org.mapstruct:mapstruct:1.6.3'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    testAnnotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
+    // 비밀번호 해시(PasswordEncoder)만 필요하다. 인증·인가 설정은 f04에서 starter-security로 추가한다.
+    implementation 'org.springframework.security:spring-security-crypto'
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'com.oracle.database.jdbc:ojdbc11:23.26.3.0.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
     testImplementation 'com.tngtech.archunit:archunit:1.4.1'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    // 매핑되지 않은 필드가 있으면 경고가 아니라 컴파일 오류로 만든다(ch16).
+    options.compilerArgs += ['-Amapstruct.unmappedTargetPolicy=ERROR']
 }

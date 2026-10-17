@@ -9,3 +9,18 @@ spring:
     init:
       # H2용 스크립트(schema-h2.sql)만 읽는다. Oracle용은 oracle 프로파일에서 따로 실행한다.
       platform: h2
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    # 값이 null일 때 드라이버에 알려 줄 JDBC 타입. 기본값(OTHER)은 Oracle 드라이버가 받아들이지 못한다(ch15).
+    jdbc-type-for-null: "NULL"
+  global-config:
+    banner: false
+
+app:
+  # true면 시작할 때 데모 계정과 글을 만든다. 운영에서는 끈다.
+  seed-demo-data: ${SEED_DEMO_DATA:true}
+  # 데모 계정의 비밀번호. 운영에서는 데모 데이터를 끄므로 쓰이지 않는다.
+  demo-password: ${DEMO_PASSWORD:demo-pass-1234}

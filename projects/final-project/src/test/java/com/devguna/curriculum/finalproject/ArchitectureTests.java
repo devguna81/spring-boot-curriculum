@@ -30,4 +30,29 @@ class ArchitectureTests {
     void contractHasClasses() {
         assertTrue(production.stream().anyMatch(c -> c.getPackageName().endsWith(".contract")));
     }
+
+    @Test
+    void modulesAreOnlyReachedThroughTheirApiPackage() {
+        noClasses().that().resideOutsideOfPackage("..finalproject.user..")
+                .should().dependOnClassesThat().resideInAPackage("..finalproject.user.internal..")
+                .check(production);
+        noClasses().that().resideOutsideOfPackage("..finalproject.post..")
+                .should().dependOnClassesThat().resideInAPackage("..finalproject.post.internal..")
+                .check(production);
+    }
+
+    @Test
+    void userModuleDoesNotKnowPostModule() {
+        noClasses().that().resideInAPackage("..finalproject.user..")
+                .should().dependOnClassesThat().resideInAPackage("..finalproject.post..")
+                .check(production);
+    }
+
+    @Test
+    void commonDoesNotDependOnModulesOrWeb() {
+        noClasses().that().resideInAPackage("..finalproject.common..")
+                .should().dependOnClassesThat().resideInAnyPackage(
+                        "..finalproject.user..", "..finalproject.post..", "..finalproject.web..")
+                .check(production);
+    }
 }
