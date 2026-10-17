@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.ch28.UserMapper">
+
+    <!-- 컬럼과 필드의 연결을 명시한다. 자동 매핑이 되는 컬럼도 적어 두면 읽는 사람이 한눈에 본다. -->
+    <resultMap id="userResultMap" type="User">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="age" column="age"/>
+        <result property="createdAt" column="created_at"/>
+    </resultMap>
+
+    <sql id="userColumns">id, name, email, age, created_at</sql>
+
+    <!-- #{} 는 PreparedStatement의 ? 로 바뀐다. 값이 SQL 문장으로 해석되지 않는다. -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO users (name, email, age)
+        VALUES (#{name}, #{email}, #{age})
+    </insert>
+
+    <select id="findById" resultMap="userResultMap">
+        SELECT <include refid="userColumns"/>
+        FROM users
+        WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultMap="userResultMap">
+        SELECT <include refid="userColumns"/>
+        FROM users
+        ORDER BY id
+    </select>
+
+    <update id="update">
+        UPDATE users
+        SET name = #{name}, email = #{email}, age = #{age}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM users WHERE id = #{id}
+    </delete>
+</mapper>
