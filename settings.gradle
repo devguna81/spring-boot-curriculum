@@ -26,3 +26,5 @@ include 'examples:ch15-json-typehandler'
 include 'examples:ch16-mapstruct'
 include 'examples:ch17-openapi'
 include 'examples:ch18-api-contract'
+include 'examples:ch19-thymeleaf'
+

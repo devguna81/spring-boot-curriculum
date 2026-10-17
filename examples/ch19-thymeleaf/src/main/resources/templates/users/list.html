@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('사용자 목록')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<h1>사용자 목록</h1>
+<p th:if="${activeOnly}">활성 사용자만 보는 중입니다.</p>
+<p th:if="${#lists.isEmpty(users)}">표시할 사용자가 없습니다.</p>
+<table th:unless="${#lists.isEmpty(users)}">
+  <thead>
+    <tr><th>번호</th><th>이름</th><th>이메일</th><th>나이</th><th>상태</th></tr>
+  </thead>
+  <tbody>
+    <!-- th:each 의 두 번째 변수(stat)로 순번, 홀짝, 마지막 여부를 얻는다. -->
+    <tr th:each="user, stat : ${users}" th:classappend="${user.active} ? '' : 'inactive'">
+      <td th:text="${stat.count}">1</td>
+      <td><a th:href="@{/users/{id}(id=${user.id})}" th:text="${user.name}">이름</a></td>
+      <td th:text="${user.email}">email</td>
+      <td th:text="${user.age}">0</td>
+      <td th:text="${user.active} ? '활성' : '비활성'">상태</td>
+    </tr>
+  </tbody>
+</table>
+<p>총 <span th:text="${#lists.size(users)}">0</span>명</p>
+</body>
+</html>
