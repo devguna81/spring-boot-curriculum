@@ -297,6 +297,18 @@ npm run dev      # http://localhost:5173
 npm test
 ```
 
+#### React와 REST API (Chapter 22)
+
+백엔드와 화면을 따로 실행합니다.
+
+```bash
+./gradlew :examples:ch22-react-rest:bootRun        # 터미널 1: http://localhost:8080
+
+cd examples/ch22-react-rest/frontend                 # 터미널 2
+npm ci
+npm run dev                                          # http://localhost:5173
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -367,7 +379,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | [`examples/ch19-thymeleaf`](examples/ch19-thymeleaf) |
 | **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | [`examples/ch20-thymeleaf-crud`](examples/ch20-thymeleaf-crud) |
 | **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | [`examples/ch21-react-basics`](examples/ch21-react-basics) |
-| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | - |
+| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | [`examples/ch22-react-rest`](examples/ch22-react-rest) |
 | **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - |
 | **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - |
 | **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | - |
