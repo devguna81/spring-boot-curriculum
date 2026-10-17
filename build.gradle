@@ -1,0 +1,25 @@
+// 루트 프로젝트는 공통 설정만 둔다. 각 예제의 의존성은 examples/<챕터>/build.gradle에 있다.
+subprojects {
+    group = 'com.devguna.curriculum'
+    version = '0.0.1-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    pluginManager.withPlugin('java') {
+        java {
+            toolchain {
+                languageVersion = JavaLanguageVersion.of(21)
+            }
+        }
+
+        tasks.withType(Test).configureEach {
+            useJUnitPlatform()
+            testLogging {
+                events 'passed', 'skipped', 'failed'
+                exceptionFormat 'full'
+            }
+        }
+    }
+}
