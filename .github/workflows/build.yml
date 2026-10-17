@@ -23,9 +23,10 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
+      # 빌드 캐시를 쓰지 않아 모든 모듈의 테스트를 매번 실행한다.
       # Oracle 연결이 필요한 테스트는 'oracle' 프로파일로 분리되어 있어 여기서는 실행하지 않는다.
       - name: Build and test
-        run: ./gradlew clean build --no-daemon
+        run: ./gradlew clean build --no-daemon --no-build-cache
 
       - name: Upload test reports
         if: always()

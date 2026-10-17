@@ -169,6 +169,22 @@ curl "http://localhost:8081/greeting?name=devguna"
 curl http://localhost:8081/config
 ```
 
+#### Bean 등록과 주입 확인 (Chapter 03)
+
+```bash
+./gradlew :examples:ch03-ioc-di-bean:bootRun
+```
+
+```bash
+curl "http://localhost:8080/orders?item=book"
+# [email] order placed: book
+
+curl "http://localhost:8080/orders?item=book&urgent=true"
+# [sms] order placed: book
+
+curl http://localhost:8080/beans
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -220,7 +236,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 |:---|:---|:---|
 | **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | [`examples/ch01-hello-spring`](examples/ch01-hello-spring) |
 | **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | [`examples/ch02-config-profile`](examples/ch02-config-profile) |
-| **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | - |
+| **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | [`examples/ch03-ioc-di-bean`](examples/ch03-ioc-di-bean) |
 | **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - |
 | **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
 | **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - |
