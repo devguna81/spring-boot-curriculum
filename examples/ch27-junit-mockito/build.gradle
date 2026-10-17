@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+// 이 모듈은 실행하는 애플리케이션이 아니라 서비스 단위 테스트 예제다. 실행 JAR는 만들지 않는다.
+bootJar {
+    enabled = false
+}
+
+dependencies {
+    // JUnit 5, Mockito, AssertJ가 함께 들어 있다. 스프링 컨테이너는 쓰지 않는다.
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
