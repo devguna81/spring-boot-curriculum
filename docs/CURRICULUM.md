@@ -1,12 +1,9 @@
 # Spring Boot 4 실습형 커리큘럼
 
 초급 개발자가 Spring Boot 4로 REST API, DB, 화면, 아키텍처, 테스트, 배포까지 단계적으로 익히도록 구성했다.
-모든 챕터는 `examples/` 아래 실행 가능한 예제와 1:1로 연결되고, 블로그 글은 검증된 코드만 근거로 쓴다.
+모든 챕터는 `examples/` 아래 실행 가능한 예제와 1:1로 연결된다.
 
 - 기술 스택: [TECH-STACK.md](TECH-STACK.md)
-- 챕터별 상태: [CURRICULUM-STATUS.md](CURRICULUM-STATUS.md)
-- 코드와 글의 대응: [CODE-DOC-MAPPING.md](CODE-DOC-MAPPING.md)
-- 게시 인계 규칙: [PUBLISHING-GUIDE.md](PUBLISHING-GUIDE.md)
 
 ## 전체 구성
 
@@ -110,9 +107,9 @@ Contract는 Spring Boot 내장 기능이 아니라 API 계약과 인터페이스
 - ch12에서 MyBatis-Plus를 별도로 다룬다. 단순 CRUD와 페이징만 MyBatis-Plus로 줄이고, Oracle JSON(ch14~ch15)과 JOIN 같은 복잡한 질의는 XML Mapper로 유지한다.
 - 종합 프로젝트도 같은 기준을 따른다.
 
-## 진행 원칙
+## 학습 원칙
 
-1. 코드 구현 -> 빌드/테스트 -> GitHub 반영 -> MD 초안 -> 사용자 검토 -> Agy 게시 순서를 지킨다.
-2. 챕터는 순차 진행하고, 이전 챕터가 `VERIFIED` 이상이어야 다음을 시작한다.
-3. Oracle이 필요한 검증은 로컬에서 실행하지 못하면 `미검증`으로 기록하고 성공으로 보고하지 않는다.
-4. 챕터를 시작할 때 사용할 라이브러리가 Boot 4에서 지원되는지 먼저 확인하고 `TECH-STACK.md`에 반영한다.
+1. 챕터는 순서대로 학습한다. 각 챕터의 선수학습은 위 표에 적혀 있다.
+2. 모든 예제는 `./gradlew :examples:<챕터>:build`로 빌드하고 테스트까지 실행할 수 있다.
+3. Oracle이 필요한 예제는 `oracle` 프로파일로 분리되어 있다. 기본 빌드에서는 H2만 사용한다.
+4. 새 라이브러리를 도입하는 챕터는 Spring Boot 4 지원 여부를 먼저 설명하고, 사용한 버전을 `TECH-STACK.md`에 적는다.
