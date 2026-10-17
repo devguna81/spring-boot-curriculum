@@ -1,0 +1,8 @@
+# --spring.profiles.active=dev 로 실행할 때 application.yml 위에 덮어써진다.
+# 여기에 없는 키는 application.yml의 값이 그대로 유지된다.
+server:
+  port: 8081
+
+app:
+  greeting:
+    prefix: Hi (dev)

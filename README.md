@@ -149,6 +149,26 @@ curl http://localhost:8080/info
 
 브라우저에서 `http://localhost:8080/hello` 를 열어도 됩니다. `javaVersion` 값은 설치된 JDK에 따라 달라집니다.
 
+#### Profile을 지정해서 실행 (Chapter 02)
+
+```bash
+# Profile 없이 실행: application.yml만 적용 (포트 8080)
+./gradlew :examples:ch02-config-profile:bootRun
+
+# dev Profile (포트 8081)
+./gradlew :examples:ch02-config-profile:bootRun --args='--spring.profiles.active=dev'
+
+# 명령행 인자로 설정 덮어쓰기
+./gradlew :examples:ch02-config-profile:bootRun --args='--spring.profiles.active=dev --app.greeting.prefix=CLI'
+```
+
+```bash
+curl "http://localhost:8081/greeting?name=devguna"
+# Hi (dev), devguna!
+
+curl http://localhost:8081/config
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -199,7 +219,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | 챕터 | 주요 학습 내용 | 예제 모듈 |
 |:---|:---|:---|
 | **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | [`examples/ch01-hello-spring`](examples/ch01-hello-spring) |
-| **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | - |
+| **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | [`examples/ch02-config-profile`](examples/ch02-config-profile) |
 | **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | - |
 | **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - |
 | **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
