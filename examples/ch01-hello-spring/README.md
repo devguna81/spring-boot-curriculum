@@ -1,54 +1,48 @@
 # ch01. Hello Spring Boot
 
-Spring Boot 프로젝트를 만들고 첫 번째 REST API(`GET /hello`)를 실행해 봅니다.
+Spring Boot 프로젝트의 구조를 이해하고 첫 REST API(`GET /hello`, `GET /info`)를 실행한다.
+설명은 [docs/chapters/ch01](../../docs/chapters/ch01/README.md)에 있다.
 
-## 실행 환경
+## 환경
 
-- Java 21
-- Spring Boot 4.1.1
-- Gradle (Wrapper 포함, 별도 설치 불필요)
+- JDK 21
+- Gradle Wrapper 포함 (별도 설치 불필요)
 
-## 프로젝트 구조
+## 구조
 
 ```text
-ch01-hello-spring-boot/
+ch01-hello-spring/
 ├── build.gradle
-├── settings.gradle
-├── gradlew / gradlew.bat
 └── src
     ├── main
     │   ├── java/com/devguna/curriculum/ch01
-    │   │   ├── Ch01HelloSpringBootApplication.java   # 애플리케이션 시작점
-    │   │   └── HelloController.java                  # GET /hello
-    │   └── resources/application.properties
+    │   │   ├── Ch01Application.java    # 시작점 (@SpringBootApplication)
+    │   │   ├── HelloController.java    # GET /hello, GET /info
+    │   │   └── AppInfo.java            # /info 응답 record
+    │   └── resources/application.yml
     └── test/java/com/devguna/curriculum/ch01
-        ├── Ch01HelloSpringBootApplicationTests.java  # 컨텍스트 로딩 테스트
-        └── HelloControllerTests.java                 # API 응답 테스트
+        ├── Ch01ApplicationTests.java   # 컨텍스트 로딩
+        └── HelloControllerTests.java   # API 응답 검증
 ```
 
-## 실행
+## 실행 (저장소 루트에서)
 
-```bash
-cd ch01-hello-spring-boot
-./gradlew bootRun
-```
+| OS | 명령 |
+|---|---|
+| Linux / macOS | `./gradlew :examples:ch01-hello-spring:bootRun` |
+| Windows | `gradlew.bat :examples:ch01-hello-spring:bootRun` |
 
-Windows에서는 `gradlew.bat bootRun`을 사용합니다.
-
-## 확인
+## 호출
 
 ```bash
 curl http://localhost:8080/hello
-# Hello, Spring Boot!
-
 curl "http://localhost:8080/hello?name=devguna"
-# Hello, devguna!
+curl http://localhost:8080/info
 ```
 
-브라우저에서 http://localhost:8080/hello 를 열어도 됩니다.
+## 빌드와 테스트
 
-## 테스트
-
-```bash
-./gradlew test
-```
+| OS | 이 챕터만 | 전체 |
+|---|---|---|
+| Linux / macOS | `./gradlew :examples:ch01-hello-spring:build` | `./gradlew clean build` |
+| Windows | `gradlew.bat :examples:ch01-hello-spring:build` | `gradlew.bat clean build` |
