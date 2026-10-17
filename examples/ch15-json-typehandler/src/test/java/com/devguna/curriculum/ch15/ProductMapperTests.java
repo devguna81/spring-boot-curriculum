@@ -40,7 +40,7 @@ class ProductMapperTests {
         Product product = new Product("laptop", laptop);
         mapper.insert(product);
 
-        String stored = jdbc.sql("SELECT attributes FROM products WHERE id = :id")
+        String stored = jdbc.sql("SELECT attributes FROM product_catalog WHERE id = :id")
                 .param("id", product.getId()).query(String.class).single();
 
         assertEquals("{\"brand\":\"acme\",\"price\":1200,\"tags\":[\"new\",\"sale\"],"
@@ -53,13 +53,13 @@ class ProductMapperTests {
         mapper.insert(product);
 
         assertNull(mapper.findById(product.getId()).getAttributes());
-        assertEquals(1, jdbc.sql("SELECT COUNT(*) FROM products WHERE attributes IS NULL AND id = :id")
+        assertEquals(1, jdbc.sql("SELECT COUNT(*) FROM product_catalog WHERE attributes IS NULL AND id = :id")
                 .param("id", product.getId()).query(Integer.class).single());
     }
 
     @Test
     void jsonWrittenByOtherSystemsWithExtraKeysIsStillReadable() {
-        jdbc.sql("INSERT INTO products (name, attributes) VALUES ('legacy', :json)")
+        jdbc.sql("INSERT INTO product_catalog (name, attributes) VALUES ('legacy', :json)")
                 .param("json", "{\"brand\":\"old\",\"price\":10,\"tags\":[],\"specs\":null,\"discontinued\":true}")
                 .update();
 

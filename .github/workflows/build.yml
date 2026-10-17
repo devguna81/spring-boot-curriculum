@@ -76,7 +76,7 @@ jobs:
 
       - name: Oracle tests
         run: >
-          ./gradlew --no-daemon --no-build-cache
+          ./gradlew --no-daemon --no-build-cache --no-parallel
           :examples:ch13-oracle-connection:test
           :examples:ch14-oracle-json:test
           :examples:ch15-json-typehandler:test

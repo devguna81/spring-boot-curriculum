@@ -7,22 +7,22 @@
         SQL에는 JSON 변환 코드가 전혀 없다.
     -->
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        INSERT INTO products (name, attributes) VALUES (#{name}, #{attributes})
+        INSERT INTO product_catalog (name, attributes) VALUES (#{name}, #{attributes})
     </insert>
 
     <select id="findById" resultType="Product">
-        SELECT id, name, attributes FROM products WHERE id = #{id}
+        SELECT id, name, attributes FROM product_catalog WHERE id = #{id}
     </select>
 
     <select id="findAll" resultType="Product">
-        SELECT id, name, attributes FROM products ORDER BY id
+        SELECT id, name, attributes FROM product_catalog ORDER BY id
     </select>
 
     <select id="count" resultType="long">
-        SELECT COUNT(*) FROM products
+        SELECT COUNT(*) FROM product_catalog
     </select>
 
     <delete id="deleteAll">
-        DELETE FROM products
+        DELETE FROM product_catalog
     </delete>
 </mapper>
