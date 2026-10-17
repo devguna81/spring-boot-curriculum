@@ -26,7 +26,7 @@ class OpenApiTests {
                 .andExpect(jsonPath("$.paths['/api/v1/posts/{id}']").exists())
                 .andExpect(jsonPath("$.paths['/api/v1/users']").exists())
                 .andExpect(jsonPath("$.paths['/api/v1/admin/stats']").exists())
-                .andExpect(jsonPath("$.components.securitySchemes.userIdHeader.name").value("X-User-Id"))
+                .andExpect(jsonPath("$.components.securitySchemes.basicAuth.scheme").value("basic"))
                 .andExpect(jsonPath("$.components.schemas.PostRequest").exists())
                 .andExpect(jsonPath("$.components.schemas.ErrorBody").doesNotExist());
     }

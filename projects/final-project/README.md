@@ -28,13 +28,20 @@
 ./gradlew :projects:final-project:bootRun
 ```
 
-실행하면 데모 계정(`admin`, `alice`, `bob`)과 글이 들어 있다. 끄려면 `SEED_DEMO_DATA=false`.
+데모 계정(`admin`, `alice`, `bob`)과 글을 함께 만들려면 비밀번호를 직접 정해 환경 변수로 넘긴다. 코드에 기본 비밀번호는 없다.
+
+```bash
+SEED_DEMO_DATA=true DEMO_PASSWORD=원하는값8자이상 ./gradlew :projects:final-project:bootRun
+```
+
+`SEED_DEMO_DATA=true`인데 `DEMO_PASSWORD`가 없거나 8자 미만이면 시작하지 않는다. 데모 데이터 없이 실행하면 `/app/`의 가입 화면으로 계정을 만든다.
 
 | 주소 | 내용 |
 |---|---|
 | `/pages/posts` | 서버 렌더링 글 목록 |
 | `/swagger-ui.html` | API 문서 |
-| `/app/` | React 화면(빌드해서 넣었을 때) |
+| `/app/` | React 화면(Docker 이미지에는 들어 있고, `bootRun`에는 빌드 결과를 `static/app`에 넣어야 한다) |
+| `/actuator/health` | 상태 확인(세부 항목은 관리자만) |
 
 ### React 화면 개발
 
@@ -46,6 +53,23 @@ npm run dev        # http://localhost:5173, /api 는 8080으로 전달
 npm run build      # dist/ 를 만든다
 ```
 
-배포 이미지에서는 `dist/`를 `static/app/`에 넣는다(f04).
+### Docker
+
+```bash
+docker build -f projects/final-project/Dockerfile -t final-project .
+docker run --rm -p 8080:8080 -e SEED_DEMO_DATA=true -e DEMO_PASSWORD=원하는값8자이상 final-project
+
+# 또는 compose
+DEMO_PASSWORD=원하는값8자이상 SEED_DEMO_DATA=true docker compose -f projects/final-project/docker-compose.yml up --build
+
+# 떠 있는 서버 점검
+projects/final-project/smoke-test.sh http://localhost:8080
+```
+
+이미지는 세 단계로 만든다: React 빌드, 서버 JAR 빌드(React 결과를 `static/app`에 넣음), JRE만 있는 실행 이미지(root가 아닌 사용자).
+
+## 인증
+
+HTTP Basic, 세션 없음. 비밀번호는 bcrypt 해시로 저장한다. 읽기(`GET /api/v1/posts`)와 가입은 누구나, 쓰기는 로그인한 회원, `/api/v1/admin/**`와 운영 지표는 관리자만 할 수 있다. 규칙에 없는 경로는 기본적으로 로그인이 필요하다.
 
 Oracle로 실행하려면 `oracle` 프로파일과 접속 환경 변수(`ORACLE_URL`, `ORACLE_USERNAME`, `ORACLE_PASSWORD`)가 필요하다. 테이블은 `src/main/resources/oracle/schema-oracle.sql`로 먼저 만든다.

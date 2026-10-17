@@ -13,7 +13,6 @@ import com.devguna.curriculum.finalproject.post.api.PostApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import jakarta.servlet.http.HttpServletRequest;
 
 @Tag(name = "관리자")
 @RestController
@@ -30,8 +29,8 @@ class AdminController {
 
     @Operation(summary = "작성자별 글 수", description = "관리자만 볼 수 있다.")
     @GetMapping("/stats")
-    List<AuthorStat> stats(HttpServletRequest http) {
-        if (!currentActor.require(http).isAdmin()) {
+    List<AuthorStat> stats() {
+        if (!currentActor.require().isAdmin()) {
             throw new ForbiddenOperationException("관리자만 볼 수 있습니다");
         }
         return postApi.authorStats();

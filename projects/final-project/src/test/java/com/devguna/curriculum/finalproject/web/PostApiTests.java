@@ -1,5 +1,6 @@
 package com.devguna.curriculum.finalproject.web;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -15,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -51,8 +53,12 @@ class PostApiTests {
         admin = userApi.createAccount("admin", "password-1234", "관리자", Role.ADMIN);
     }
 
+    private static RequestPostProcessor as(UserView user) {
+        return httpBasic(user.username(), "password-1234");
+    }
+
     private long createAs(UserView user) throws Exception {
-        MvcResult result = mvc.perform(post("/api/v1/posts").header("X-User-Id", user.id())
+        MvcResult result = mvc.perform(post("/api/v1/posts").with(as(user))
                         .contentType(MediaType.APPLICATION_JSON).content(BODY))
                 .andExpect(status().isCreated()).andReturn();
         return jsonMapper.readTree(result.getResponse().getContentAsString()).get("id").asLong();
@@ -67,7 +73,7 @@ class PostApiTests {
 
     @Test
     void createReturnsLocationAndBody() throws Exception {
-        MvcResult result = mvc.perform(post("/api/v1/posts").header("X-User-Id", alice.id())
+        MvcResult result = mvc.perform(post("/api/v1/posts").with(as(alice))
                         .contentType(MediaType.APPLICATION_JSON).content(BODY))
                 .andExpect(status().isCreated())
                 .andExpect(header().exists("Location"))
@@ -90,7 +96,7 @@ class PostApiTests {
 
     @Test
     void validationErrorsListFields() throws Exception {
-        mvc.perform(post("/api/v1/posts").header("X-User-Id", alice.id()).contentType(MediaType.APPLICATION_JSON)
+        mvc.perform(post("/api/v1/posts").with(as(alice)).contentType(MediaType.APPLICATION_JSON)
                         .content("{\"title\":\"\",\"content\":\"x\",\"tags\":[\"1\",\"2\",\"3\",\"4\",\"5\",\"6\"]}"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.code").value("VALIDATION_FAILED"))
@@ -101,10 +107,10 @@ class PostApiTests {
     void otherUserCannotUpdateOrDelete() throws Exception {
         long id = createAs(alice);
 
-        mvc.perform(put("/api/v1/posts/" + id).header("X-User-Id", bob.id())
+        mvc.perform(put("/api/v1/posts/" + id).with(as(bob))
                         .contentType(MediaType.APPLICATION_JSON).content(BODY))
                 .andExpect(status().isForbidden()).andExpect(jsonPath("$.code").value("FORBIDDEN"));
-        mvc.perform(delete("/api/v1/posts/" + id).header("X-User-Id", bob.id())).andExpect(status().isForbidden());
+        mvc.perform(delete("/api/v1/posts/" + id).with(as(bob))).andExpect(status().isForbidden());
         mvc.perform(get("/api/v1/posts/" + id)).andExpect(status().isOk());
     }
 
@@ -113,14 +119,14 @@ class PostApiTests {
         long id = createAs(alice);
         String changed = "{\"title\":\"수정\",\"content\":\"본문\",\"tags\":[],\"pinned\":true}";
 
-        mvc.perform(put("/api/v1/posts/" + id).header("X-User-Id", alice.id())
+        mvc.perform(put("/api/v1/posts/" + id).with(as(alice))
                         .contentType(MediaType.APPLICATION_JSON).content(changed))
                 .andExpect(status().isOk()).andExpect(jsonPath("$.title").value("수정"))
                 .andExpect(jsonPath("$.pinned").value(true));
-        mvc.perform(put("/api/v1/posts/" + id).header("X-User-Id", admin.id())
+        mvc.perform(put("/api/v1/posts/" + id).with(as(admin))
                         .contentType(MediaType.APPLICATION_JSON).content(BODY))
                 .andExpect(status().isOk());
-        mvc.perform(delete("/api/v1/posts/" + id).header("X-User-Id", admin.id()))
+        mvc.perform(delete("/api/v1/posts/" + id).with(as(admin)))
                 .andExpect(status().isNoContent());
         mvc.perform(get("/api/v1/posts/" + id)).andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.code").value("NOT_FOUND"));
@@ -129,7 +135,7 @@ class PostApiTests {
     @Test
     void unknownPostIsNotFound() throws Exception {
         mvc.perform(get("/api/v1/posts/999999")).andExpect(status().isNotFound());
-        mvc.perform(delete("/api/v1/posts/999999").header("X-User-Id", admin.id())).andExpect(status().isNotFound());
+        mvc.perform(delete("/api/v1/posts/999999").with(as(admin))).andExpect(status().isNotFound());
     }
 
     @Test
@@ -152,8 +158,8 @@ class PostApiTests {
         createAs(alice);
 
         mvc.perform(get("/api/v1/admin/stats")).andExpect(status().isUnauthorized());
-        mvc.perform(get("/api/v1/admin/stats").header("X-User-Id", alice.id())).andExpect(status().isForbidden());
-        mvc.perform(get("/api/v1/admin/stats").header("X-User-Id", admin.id()))
+        mvc.perform(get("/api/v1/admin/stats").with(as(alice))).andExpect(status().isForbidden());
+        mvc.perform(get("/api/v1/admin/stats").with(as(admin)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].authorName").value("앨리스"))
                 .andExpect(jsonPath("$[0].postCount").value(1))

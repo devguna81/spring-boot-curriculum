@@ -20,7 +20,21 @@ mybatis-plus:
     banner: false
 
 app:
-  # true면 시작할 때 데모 계정과 글을 만든다. 운영에서는 끈다.
-  seed-demo-data: ${SEED_DEMO_DATA:true}
-  # 데모 계정의 비밀번호. 운영에서는 데모 데이터를 끄므로 쓰이지 않는다.
-  demo-password: ${DEMO_PASSWORD:demo-pass-1234}
+  # true면 시작할 때 데모 계정(admin, alice, bob)과 글을 만든다. 기본은 꺼짐.
+  seed-demo-data: ${SEED_DEMO_DATA:false}
+  # 데모 계정의 비밀번호. 기본값이 없다. SEED_DEMO_DATA=true일 때 DEMO_PASSWORD로 직접 지정한다.
+  demo-password: ${DEMO_PASSWORD:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # 필요한 것만 연다. env, beans 같은 민감한 정보는 열지 않는다.
+        include: health,info,metrics
+  endpoint:
+    health:
+      # 상태(UP/DOWN)만 공개하고 DB 같은 세부 항목은 관리자에게만 보인다.
+      show-details: when-authorized
+      roles: ADMIN
+      probes:
+        enabled: true

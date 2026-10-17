@@ -1,6 +1,6 @@
 name: image
 
-# ch32 컨테이너 이미지를 빌드하고, 실제로 띄워 스모크 테스트를 통과하는지 확인한다.
+# ch32 예제와 종합 프로젝트의 컨테이너 이미지를 빌드하고, 실제로 띄워 스모크 테스트를 통과하는지 확인한다.
 # 이미지 관련 파일이 바뀔 때만 돈다(build.yml은 모든 변경에서 돈다).
 on:
   push:
@@ -8,6 +8,7 @@ on:
     paths:
       - 'examples/ch32-docker/**'
       - 'examples/ch33-cicd/**'
+      - 'projects/final-project/**'
       - '.dockerignore'
       - '.github/workflows/image.yml'
   pull_request:
@@ -15,6 +16,7 @@ on:
     paths:
       - 'examples/ch32-docker/**'
       - 'examples/ch33-cicd/**'
+      - 'projects/final-project/**'
       - '.dockerignore'
       - '.github/workflows/image.yml'
   workflow_dispatch:
@@ -68,3 +70,38 @@ jobs:
           name: ch32-docker-image
           path: ch32-docker-ci.tar.gz
           retention-days: 3
+
+  final-project:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: docker/setup-buildx-action@v4
+
+      # React 빌드와 서버 빌드를 한 이미지에서 한다. 로컬에 Node나 JDK가 없어도 같은 결과가 나온다.
+      - name: Build image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: projects/final-project/Dockerfile
+          load: true
+          push: false
+          tags: final-project:ci
+          cache-from: type=gha,scope=final-project
+          cache-to: type=gha,mode=max,scope=final-project
+
+      # 데모 비밀번호는 실행할 때마다 무작위로 만든다. 저장소에 고정 비밀번호를 두지 않는다.
+      - name: Run container
+        run: |
+          DEMO_PW=$(openssl rand -hex 12)
+          echo "::add-mask::$DEMO_PW"
+          docker run -d --name app -p 8080:8080 \
+            -e SEED_DEMO_DATA=true -e DEMO_PASSWORD="$DEMO_PW" final-project:ci
+
+      - name: Smoke test
+        run: projects/final-project/smoke-test.sh http://localhost:8080 90
+
+      - name: Show container log on failure
+        if: failure()
+        run: docker logs app

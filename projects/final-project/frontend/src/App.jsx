@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link, Navigate, Route, Routes, useNavigate } from 'react-router'
 import { usersApi } from './api/usersApi.js'
-import { getUserId, logout } from './auth/session.js'
+import { isLoggedIn, logout } from './auth/session.js'
 import LoginPage from './pages/LoginPage.jsx'
 import PostDetailPage from './pages/PostDetailPage.jsx'
 import PostFormPage from './pages/PostFormPage.jsx'
@@ -14,14 +14,15 @@ export default function App() {
 
   // 로그인 상태가 바뀔 때마다 서버에서 내 정보를 다시 읽는다. 저장된 ID가 잘못됐으면 로그아웃 처리한다.
   const refreshMe = useCallback(async () => {
-    if (!getUserId()) {
+    if (!isLoggedIn()) {
       setMe(null)
       return
     }
     try {
       setMe(await usersApi.me())
-    } catch {
-      logout()
+    } catch (e) {
+      // 저장된 자격 증명이 거절됐을 때만 로그아웃한다. 서버가 잠시 응답하지 않는 경우까지 지우지 않는다.
+      if (e.status === 401) logout()
       setMe(null)
     }
   }, [])

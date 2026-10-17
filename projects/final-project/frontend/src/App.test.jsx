@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import App from './App.jsx'
-import { login, logout } from './auth/session.js'
+import { encodeBasic, login, logout } from './auth/session.js'
 import { installFakeFetch } from './test/fakeServer.js'
 
 beforeEach(() => logout())
@@ -21,18 +21,18 @@ describe('App', () => {
   })
 
   it('로그인 상태면 내 정보를 읽어 이름과 글쓰기 링크를 보여 준다', async () => {
-    login(10)
+    login('alice', 'secret-1234')
     const { calls } = installFakeFetch((_m, url) => ({
       body: url.endsWith('/users/me') ? { id: 10, username: 'alice', displayName: '앨리스', role: 'USER' } : list,
     }))
     render(<MemoryRouter initialEntries={['/posts']}><App /></MemoryRouter>)
     expect(await screen.findByText('앨리스(alice)')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: '글쓰기' })).toBeInTheDocument()
-    expect(calls.find((c) => c.url.endsWith('/users/me')).headers).toEqual({ 'X-User-Id': '10' })
+    expect(calls.find((c) => c.url.endsWith('/users/me')).headers).toEqual({ Authorization: encodeBasic('alice', 'secret-1234') })
   })
 
   it('저장된 ID가 잘못됐으면 로그아웃 상태로 돌아간다', async () => {
-    login(999)
+    login('ghost', 'x')
     installFakeFetch((_m, url) => (url.endsWith('/users/me')
       ? { status: 401, body: { code: 'UNAUTHORIZED', message: 'x', issues: [] } }
       : { body: list }))
@@ -41,7 +41,7 @@ describe('App', () => {
   })
 
   it('로그아웃하면 로그인 링크가 돌아온다', async () => {
-    login(10)
+    login('alice', 'secret-1234')
     installFakeFetch((_m, url) => ({
       body: url.endsWith('/users/me') ? { id: 10, username: 'alice', displayName: '앨리스', role: 'USER' } : list,
     }))

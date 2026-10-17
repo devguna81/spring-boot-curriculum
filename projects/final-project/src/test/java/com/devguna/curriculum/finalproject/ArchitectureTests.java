@@ -55,4 +55,26 @@ class ArchitectureTests {
                         "..finalproject.user..", "..finalproject.post..", "..finalproject.web..")
                 .check(production);
     }
+
+    @Test
+    void postModuleDoesNotKnowSpringSecurity() {
+        noClasses().that().resideInAPackage("..finalproject.post..")
+                .should().dependOnClassesThat().resideInAPackage("org.springframework.security..")
+                .check(production);
+    }
+
+    @Test
+    void onlySecurityAndWebTouchSecurityContext() {
+        noClasses().that().resideOutsideOfPackages("..finalproject.security..", "..finalproject.web..")
+                .should().dependOnClassesThat().haveFullyQualifiedName(
+                        "org.springframework.security.core.context.SecurityContextHolder")
+                .check(production);
+    }
+
+    @Test
+    void securityDoesNotDependOnPostOrUserInternals() {
+        noClasses().that().resideInAPackage("..finalproject.security..")
+                .should().dependOnClassesThat().resideInAnyPackage("..finalproject.post..", "..finalproject.user.internal..")
+                .check(production);
+    }
 }

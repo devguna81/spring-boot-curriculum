@@ -9,7 +9,8 @@ com.devguna.curriculum.finalproject
   user/       회원 모듈   api/ (공개)  internal/ (비공개)
   post/       글 모듈     api/ (공개)  internal/ (비공개)
   web/        컨트롤러. 모듈의 api만 사용한다
-  security/   인증·인가 설정
+  security/   인증·인가 설정 (HTTP Basic, JSON 오류 응답)
+  bootstrap/  데모 데이터 입력 (기본 꺼짐)
 ```
 
 모듈은 ch26의 규칙을 따른다. `internal`은 패키지 전용이고, 다른 모듈은 `api` 인터페이스로만 접근한다. 모듈 사이에 순환이 없어야 한다.
@@ -20,6 +21,9 @@ com.devguna.curriculum.finalproject
 web -> post.api, user.api -> (구현은 각 internal)
 post.internal -> user.api (작성자 존재 확인)
 user -> post (없음)
+web -> security (인증된 사용자를 Actor로 바꾸는 CurrentActor 한 곳)
+security -> user.api (계정 조회)
+post -> Spring Security (없음. 서비스는 Actor만 안다)
 ```
 
 ## 기술 선택 기준

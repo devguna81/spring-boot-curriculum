@@ -344,7 +344,23 @@ examples/ch33-cicd/smoke-test.sh http://localhost:8080 60
 
 ### 6. Final Project: 사용자·게시판 관리 시스템
 
-커리큘럼의 종합 실습은 `projects/final-project` 에서 진행합니다. 사용자·게시글 CRUD, 검색과 페이징, MyBatis, Oracle JSON, MapStruct, Swagger, Thymeleaf와 React 화면, Spring Security, Docker, GitHub Actions를 모두 적용하는 프로젝트입니다. 구현되면 이곳에 실행 방법을 추가합니다.
+커리큘럼의 종합 실습은 `projects/final-project` 에서 진행합니다. 사용자·게시글 CRUD, 검색과 페이징, MyBatis, Oracle JSON, MapStruct, Swagger, Thymeleaf와 React 화면, Spring Security, Docker, GitHub Actions를 모두 적용하는 프로젝트입니다. 
+
+```bash
+# 테스트 (H2 기본, Oracle 테스트는 ORACLE_URL이 없으면 건너뜀)
+./gradlew :projects:final-project:test
+
+# 실행: 데모 계정(admin, alice, bob)과 글을 함께 만들려면 비밀번호를 직접 정한다
+SEED_DEMO_DATA=true DEMO_PASSWORD=원하는값8자이상 ./gradlew :projects:final-project:bootRun
+```
+
+| 주소 | 내용 |
+|---|---|
+| `http://localhost:8080/pages/posts` | 서버 렌더링 글 목록 |
+| `http://localhost:8080/swagger-ui.html` | API 문서 |
+| `http://localhost:8080/app/` | React 화면 (이미지에 묶여 들어간다) |
+
+React 화면 개발과 Docker 실행 방법은 [`projects/final-project/README.md`](projects/final-project/README.md)를 봅니다.
 
 ---
 
@@ -416,7 +432,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch31. Logging과 Actuator** | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | [`examples/ch31-logging-actuator`](examples/ch31-logging-actuator) |
 | **ch32. Docker** | 멀티 스테이지 빌드, 이미지 실행, compose | [`examples/ch32-docker`](examples/ch32-docker) |
 | **ch33. GitHub Actions와 CI/CD** | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | [`examples/ch33-cicd`](examples/ch33-cicd) |
-| **f01~f04. 종합 프로젝트** | 설계, 백엔드, 화면과 문서, 품질과 배포 | `projects/final-project` |
+| **f01~f04. 종합 프로젝트** | 설계, 백엔드, 화면과 문서, 품질과 배포 | [`projects/final-project`](projects/final-project) |
 
 예제 모듈이 `-`로 표시된 챕터는 아직 추가되지 않았습니다. (ch33의 워크플로 파일은 GitHub 규칙에 따라 `.github/workflows/`에 있습니다.)
 

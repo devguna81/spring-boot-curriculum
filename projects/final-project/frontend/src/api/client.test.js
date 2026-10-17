@@ -2,7 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ApiError, toQuery } from './client.js'
 import { postsApi } from './postsApi.js'
 import { installFakeFetch } from '../test/fakeServer.js'
-import { login, logout } from '../auth/session.js'
+import { encodeBasic, login, logout } from '../auth/session.js'
 
 beforeEach(() => logout())
 afterEach(() => vi.unstubAllGlobals())
@@ -25,20 +25,20 @@ describe('postsApi', () => {
     expect(calls[0].url).toBe('/api/v1/posts?keyword=%EA%B8%80&page=2&size=10')
     expect(calls[0].headers).toBeUndefined()
 
-    login(7)
+    login('alice', 'secret-1234')
     await postsApi.search()
-    expect(calls[1].headers).toEqual({ 'X-User-Id': '7' })
+    expect(calls[1].headers).toEqual({ Authorization: encodeBasic('alice', 'secret-1234') })
   })
 
   it('작성은 JSON 본문과 Content-Type 을 보낸다', async () => {
-    login(3)
+    login('bob', 'pw')
     const { calls } = installFakeFetch(() => ({ status: 201, body: { id: 9 } }))
     await postsApi.create({ title: 't', content: 'c', tags: ['a'], pinned: false })
     expect(calls[0]).toMatchObject({
       method: 'POST',
       url: '/api/v1/posts',
       body: { title: 't', content: 'c', tags: ['a'], pinned: false },
-      headers: { 'Content-Type': 'application/json', 'X-User-Id': '3' },
+      headers: { 'Content-Type': 'application/json', Authorization: encodeBasic('bob', 'pw') },
     })
   })
 

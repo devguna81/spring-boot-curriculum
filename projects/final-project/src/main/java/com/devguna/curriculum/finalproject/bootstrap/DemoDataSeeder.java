@@ -27,7 +27,7 @@ class DemoDataSeeder implements ApplicationRunner {
     private final PostApi postApi;
     private final String demoPassword;
 
-    DemoDataSeeder(UserApi userApi, PostApi postApi, @Value("${app.demo-password}") String demoPassword) {
+    DemoDataSeeder(UserApi userApi, PostApi postApi, @Value("${app.demo-password:}") String demoPassword) {
         this.userApi = userApi;
         this.postApi = postApi;
         this.demoPassword = demoPassword;
@@ -35,6 +35,10 @@ class DemoDataSeeder implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
+        // 코드에 기본 비밀번호를 두지 않는다. 데모 데이터를 켜려면 비밀번호를 직접 정해야 한다.
+        if (demoPassword == null || demoPassword.length() < 8) {
+            throw new IllegalStateException("app.seed-demo-data=true이면 DEMO_PASSWORD(8자 이상)를 지정해야 합니다");
+        }
         if (userApi.findAccount("admin").isPresent()) {
             return;
         }

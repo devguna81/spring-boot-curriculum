@@ -23,8 +23,8 @@ export default function SignupPage({ onChange }) {
     setFieldErrors({})
     setFormError(null)
     try {
-      const user = await usersApi.signup(form)
-      login(user.id) // 가입 직후 바로 로그인 상태로 만든다.
+      await usersApi.signup(form)
+      login(form.username, form.password) // 가입 직후 바로 로그인 상태로 만든다.
       await onChange()
       navigate('/posts')
     } catch (e) {

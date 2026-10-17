@@ -2,6 +2,7 @@ package com.devguna.curriculum.finalproject.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -91,17 +92,35 @@ class UserApiTests {
     void meReturnsCurrentUser() throws Exception {
         UserView user = userApi.createAccount("admin1", "secret-1234", "관리", Role.ADMIN);
 
-        mvc.perform(get("/api/v1/users/me").header("X-User-Id", user.id()))
+        mvc.perform(get("/api/v1/users/me").with(httpBasic("admin1", "secret-1234")))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.role").value("ADMIN"));
     }
 
     @Test
-    void meWithoutOrWithUnknownHeaderIsUnauthorized() throws Exception {
+    void meWithoutOrWithWrongCredentialsIsUnauthorized() throws Exception {
+        userApi.createAccount("admin1", "secret-1234", "관리", Role.ADMIN);
+
         mvc.perform(get("/api/v1/users/me"))
                 .andExpect(status().isUnauthorized())
                 .andExpect(jsonPath("$.code").value("UNAUTHORIZED"));
-        mvc.perform(get("/api/v1/users/me").header("X-User-Id", "abc")).andExpect(status().isUnauthorized());
-        mvc.perform(get("/api/v1/users/me").header("X-User-Id", "999999")).andExpect(status().isUnauthorized());
+        mvc.perform(get("/api/v1/users/me").with(httpBasic("admin1", "wrong-password"))).andExpect(status().isUnauthorized());
+        mvc.perform(get("/api/v1/users/me").with(httpBasic("nobody", "secret-1234"))).andExpect(status().isUnauthorized());
+    }
+
+    @Test
+    void signupIsOpenToAnonymousUsers() throws Exception {
+        mvc.perform(post("/api/v1/users").contentType(MediaType.APPLICATION_JSON).content(SIGNUP))
+                .andExpect(status().isCreated());
+    }
+
+    @Test
+    void newUserCanLogInWithTheChosenPassword() throws Exception {
+        mvc.perform(post("/api/v1/users").contentType(MediaType.APPLICATION_JSON).content(SIGNUP))
+                .andExpect(status().isCreated());
+
+        mvc.perform(get("/api/v1/users/me").with(httpBasic("kim_01", "secret-1234")))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.username").value("kim_01"));
     }
 }

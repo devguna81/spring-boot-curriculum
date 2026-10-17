@@ -15,7 +15,6 @@ import com.devguna.curriculum.finalproject.user.api.UserApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 @Tag(name = "사용자")
@@ -39,8 +38,8 @@ class UserController {
 
     @Operation(summary = "내 정보")
     @GetMapping("/me")
-    UserView me(HttpServletRequest request) {
-        long id = currentActor.require(request).id();
+    UserView me() {
+        long id = currentActor.require().id();
         return userApi.findById(id).orElseThrow();
     }
 }

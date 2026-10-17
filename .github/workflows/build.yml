@@ -87,6 +87,7 @@ jobs:
           :examples:ch13-oracle-connection:test
           :examples:ch14-oracle-json:test
           :examples:ch15-json-typehandler:test
+          :projects:final-project:test
 
       - name: Upload test reports
         if: always()
@@ -105,6 +106,7 @@ jobs:
         project:
           - examples/ch21-react-basics
           - examples/ch22-react-rest/frontend
+          - projects/final-project/frontend
     defaults:
       run:
         working-directory: ${{ matrix.project }}
