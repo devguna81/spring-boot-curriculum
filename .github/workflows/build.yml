@@ -88,3 +88,21 @@ jobs:
           name: oracle-test-reports
           path: '**/build/reports/tests/test'
           if-no-files-found: ignore
+
+  frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: examples/ch21-react-basics
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: examples/ch21-react-basics/package-lock.json
+
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
