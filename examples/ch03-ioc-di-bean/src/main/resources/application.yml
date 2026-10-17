@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch03-ioc-di-bean
