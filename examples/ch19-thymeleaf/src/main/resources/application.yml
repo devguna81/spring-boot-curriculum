@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: ch19-thymeleaf
+  thymeleaf:
+    # 학습 중 템플릿을 고치면 바로 반영되도록 캐시를 끈다. 운영에서는 켠다(기본값 true).
+    cache: false

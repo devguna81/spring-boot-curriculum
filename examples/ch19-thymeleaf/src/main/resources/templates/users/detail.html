@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('사용자 상세')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<h1>사용자 상세</h1>
+<dl>
+  <dt>이름</dt><dd th:text="${user.name}">이름</dd>
+  <!-- th:utext 는 이스케이프하지 않는다. 사용자 입력에는 쓰면 안 된다. 비교용으로만 둔다. -->
+  <dt>이름(이스케이프 안 함)</dt><dd th:utext="${user.name}">이름</dd>
+  <dt>이메일</dt><dd th:text="${user.email}">email</dd>
+  <dt>나이</dt><dd th:text="${user.age}">0</dd>
+  <dt>상태</dt>
+  <dd>
+    <span th:if="${user.active}">활성</span>
+    <span th:unless="${user.active}">비활성</span>
+  </dd>
+</dl>
+<p><a th:href="@{/users}">목록으로</a></p>
+</body>
+</html>

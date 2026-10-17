@@ -1,0 +1,14 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    // Thymeleaf 템플릿 엔진과 Boot 자동 구성(templates/ 아래 *.html 을 뷰로 사용)
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
