@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ch22-react-rest
+
+app:
+  cors:
+    # 브라우저가 이 출처(origin)에서 온 요청만 응답을 읽도록 허용한다. 쉼표로 여러 개를 줄 수 있다.
+    allowed-origins: http://localhost:5173
