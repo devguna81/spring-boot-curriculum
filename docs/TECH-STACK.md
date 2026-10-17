@@ -11,13 +11,20 @@
 | Framework | Spring Boot | 4.1.1 | ch01 | Spring Initializr 기본 안정 버전 (4.2.0은 M2/SNAPSHOT) |
 | Build | Gradle | 9.8.1 (Wrapper) | ch01 | Initializr가 생성한 Wrapper |
 | Gradle 플러그인 | io.spring.dependency-management | 1.1.7 | ch01 | Initializr 기본값 |
-| Test | JUnit 5 / Mockito / Spring Boot Test | Boot BOM 관리 | ch01 | `spring-boot-starter-webmvc-test` |
+| Test | JUnit Jupiter 6.0.3 / Mockito 5.23.0 / AssertJ 3.27.7 / Spring Boot Test | Boot BOM 관리 | ch01, ch27 | `spring-boot-starter-webmvc-test`, 서비스 단위 테스트는 `spring-boot-starter-test` (ch27) |
 | Persistence | mybatis-spring-boot-starter | 4.1.0 | ch09 | 부모 POM의 `spring-boot.version`이 4.1.0 (MyBatis 3.5.19) |
 | Persistence (확장) | mybatis-plus-spring-boot4-starter + mybatis-plus-jsqlparser | 3.5.17 | ch12 | Boot 4 전용 스타터. 아래 "MyBatis-Plus 검토" 참조 |
 | API 문서 | springdoc-openapi-starter-webmvc-ui | 3.1.1 | ch17 | 부모 POM이 `spring-boot-starter-parent:4.1.0` |
 | Mapping | MapStruct | 1.6.3 | ch16 | 최신 안정판. 1.7.0은 Beta라 제외 |
 | Template | spring-boot-starter-thymeleaf (Thymeleaf 3.1.5) | Boot BOM 관리 | ch19 | 서버 렌더링 화면 |
 | 구조 검사 | ArchUnit | 1.4.1 | ch18, ch23, ch24, ch26 | JUnit 연동 모듈 없이 코어만 사용 |
+| 슬라이스 테스트 | mybatis-spring-boot-starter-test (`@MybatisTest`) | 4.1.0 | ch28 | mybatis-spring-boot-starter와 같은 버전 |
+| 컨테이너 테스트 | Testcontainers (`testcontainers-junit-jupiter`, `testcontainers-postgresql`) / spring-boot-testcontainers | 2.0.5 (Boot BOM 관리) | ch29 | 모듈 이름이 1.x와 다르다(`postgresql` -> `testcontainers-postgresql`) |
+| DB (컨테이너) | PostgreSQL 서버 / JDBC 드라이버 | 17-alpine / 42.7.13 (Boot BOM 관리) | ch29, ch32 | 실제 DB와의 차이 확인, compose 예제 |
+| 보안 | spring-boot-starter-security (Spring Security 7.1.1) / spring-boot-starter-security-test | Boot BOM 관리 | ch30 | |
+| 운영 | spring-boot-starter-actuator (Micrometer 1.17.1) | Boot BOM 관리 | ch31, ch32 | |
+| 컨테이너 | Docker / Docker Compose | Engine 29.5.2 / Compose 5.1.4 (검증 환경) | ch32 | 기본 이미지 `eclipse-temurin:21-jdk-jammy`, `-jre-jammy` |
+| CI | GitHub Actions (checkout v7, setup-java v6, setup-gradle v6, setup-node v7, upload-artifact v7, docker/setup-buildx v4, docker/build-push v7) | 2026-10-17 최신 메이저 | ch33 | 이전 v4는 CI 로그에서 사용 중단 경고 |
 | DB (개발) | H2 | Boot BOM 관리 | ch08 | Boot가 버전을 관리 |
 | DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch13 | Java 11+ 용 드라이버, Maven Central 최신 |
 | Frontend | React / React DOM | 19.3.1 | ch21 | npm 최신 안정판, 정확한 버전 고정 |
@@ -35,6 +42,9 @@ Boot 3 자료의 코드를 그대로 가져오면 컴파일되지 않는 지점�
 | Web MVC 테스트 스타터 | `spring-boot-starter-test` | `spring-boot-starter-webmvc-test` |
 | `@AutoConfigureMockMvc` | `org.springframework.boot.test.autoconfigure.web.servlet` | `org.springframework.boot.webmvc.test.autoconfigure` |
 | `@WebMvcTest` | `org.springframework.boot.test.autoconfigure.web.servlet` | `org.springframework.boot.webmvc.test.autoconfigure` |
+| `@MockBean` 대체 | `@MockBean` (`org.springframework.boot.test.mock.mockito`) | `@MockitoBean` (`org.springframework.test.context.bean.override.mockito`) |
+| 보안 테스트 의존성 | `spring-security-test` | `spring-boot-starter-security-test` (`spring-security-test`만으로는 MockMvc에서 `@WithMockUser`가 적용되지 않았다) |
+| `HealthIndicator` 패키지 | `org.springframework.boot.actuate.health` | `org.springframework.boot.health.contributor` |
 | 내장 Tomcat | 10.x | 11.x (ch01 실행 로그: Apache Tomcat/11.0.24) |
 
 
