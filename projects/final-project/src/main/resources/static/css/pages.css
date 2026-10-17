@@ -1,0 +1,14 @@
+body { font-family: sans-serif; margin: 0; color: #222; }
+header { padding: .8rem 2rem; background: #f3f4f6; border-bottom: 1px solid #ddd; }
+header a { margin-right: 1rem; }
+main { padding: 1rem 2rem; max-width: 56rem; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ddd; padding: .4rem .8rem; text-align: left; }
+tr.pinned { background: #fffbe6; }
+.badge { background: #f59e0b; color: #fff; border-radius: 3px; padding: 0 .4rem; font-size: .8rem; margin-right: .4rem; }
+.tag { background: #e5e7eb; border-radius: 3px; padding: 0 .4rem; margin-right: .3rem; font-size: .85rem; }
+.search label { margin-right: 1rem; }
+.paging { margin-top: 1rem; }
+.paging a, .paging span { margin-right: 1rem; }
+.meta { color: #666; }
+.content { white-space: pre-wrap; line-height: 1.6; margin: 1rem 0; }

@@ -10,8 +10,12 @@ import com.devguna.curriculum.finalproject.common.ForbiddenOperationException;
 import com.devguna.curriculum.finalproject.contract.AuthorStat;
 import com.devguna.curriculum.finalproject.post.api.PostApi;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.servlet.http.HttpServletRequest;
 
+@Tag(name = "관리자")
 @RestController
 @RequestMapping("/api/v1/admin")
 class AdminController {
@@ -24,6 +28,7 @@ class AdminController {
         this.currentActor = currentActor;
     }
 
+    @Operation(summary = "작성자별 글 수", description = "관리자만 볼 수 있다.")
     @GetMapping("/stats")
     List<AuthorStat> stats(HttpServletRequest http) {
         if (!currentActor.require(http).isAdmin()) {

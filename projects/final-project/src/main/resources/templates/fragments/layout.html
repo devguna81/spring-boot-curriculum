@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<!-- 공통 조각. 다른 템플릿이 th:replace 로 가져다 쓴다. -->
+<head th:fragment="head(title)">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title th:text="${title} + ' - 게시판'">제목</title>
+  <link rel="stylesheet" th:href="@{/css/pages.css}">
+</head>
+<body>
+<header th:fragment="nav">
+  <a th:href="@{/pages/posts}">글 목록</a>
+  <a th:href="@{/app/index.html}">글쓰기(앱)</a>
+  <a th:href="@{/swagger-ui.html}">API 문서</a>
+</header>
+</body>
+</html>

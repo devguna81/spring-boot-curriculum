@@ -12,9 +12,13 @@ import com.devguna.curriculum.finalproject.contract.SignupRequest;
 import com.devguna.curriculum.finalproject.contract.UserView;
 import com.devguna.curriculum.finalproject.user.api.UserApi;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+@Tag(name = "사용자")
 @RestController
 @RequestMapping("/api/v1/users")
 class UserController {
@@ -27,11 +31,13 @@ class UserController {
         this.currentActor = currentActor;
     }
 
+    @Operation(summary = "회원 가입", security = {})
     @PostMapping
     ResponseEntity<UserView> signup(@Valid @RequestBody SignupRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED).body(userApi.signup(request));
     }
 
+    @Operation(summary = "내 정보")
     @GetMapping("/me")
     UserView me(HttpServletRequest request) {
         long id = currentActor.require(request).id();

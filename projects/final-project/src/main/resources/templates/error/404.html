@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('오류')}"></head>
+<body>
+<header th:replace="~{fragments/layout :: nav}"></header>
+<main>
+  <h1>404</h1>
+  <p th:text="${message}">메시지</p>
+  <p><a th:href="@{/pages/posts}">목록으로</a></p>
+</main>
+</body>
+</html>

@@ -20,9 +20,13 @@ import com.devguna.curriculum.finalproject.contract.PostView;
 import com.devguna.curriculum.finalproject.post.api.PostApi;
 import com.devguna.curriculum.finalproject.post.api.PostQuery;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
+@Tag(name = "게시글")
 @RestController
 @RequestMapping("/api/v1/posts")
 class PostController {
@@ -35,6 +39,7 @@ class PostController {
         this.currentActor = currentActor;
     }
 
+    @Operation(summary = "글 검색", description = "고정 글이 먼저, 그다음 최신순. size는 1~50.")
     @GetMapping
     PageResponse<PostSummary> search(@RequestParam(required = false) String keyword,
                                      @RequestParam(required = false) Long authorId,
@@ -49,17 +54,20 @@ class PostController {
         return postApi.get(id);
     }
 
+    @Operation(summary = "글 작성", description = "로그인이 필요하다.")
     @PostMapping
     ResponseEntity<PostView> create(HttpServletRequest http, @Valid @RequestBody PostRequest request) {
         PostView created = postApi.create(currentActor.require(http), request);
         return ResponseEntity.created(URI.create("/api/v1/posts/" + created.id())).body(created);
     }
 
+    @Operation(summary = "글 수정", description = "작성자 또는 관리자만 할 수 있다.")
     @PutMapping("/{id}")
     PostView update(HttpServletRequest http, @PathVariable long id, @Valid @RequestBody PostRequest request) {
         return postApi.update(currentActor.require(http), id, request);
     }
 
+    @Operation(summary = "글 삭제", description = "작성자 또는 관리자만 할 수 있다.")
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(HttpServletRequest http, @PathVariable long id) {
         postApi.delete(currentActor.require(http), id);
