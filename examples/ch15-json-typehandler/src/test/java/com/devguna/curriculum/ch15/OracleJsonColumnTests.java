@@ -39,7 +39,7 @@ class OracleJsonColumnTests {
 
     @BeforeEach
     void recreateTable() throws Exception {
-        jdbc.sql("DROP TABLE IF EXISTS products").update();
+        jdbc.sql("DROP TABLE IF EXISTS product_catalog").update();
         try (Connection connection = dataSource.getConnection()) {
             ScriptUtils.executeSqlScript(connection, new ClassPathResource("oracle/schema-oracle.sql"));
         }
@@ -59,9 +59,9 @@ class OracleJsonColumnTests {
         Product product = new Product("laptop", laptop);
         mapper.insert(product);
 
-        String brand = jdbc.sql("SELECT JSON_VALUE(attributes, '$.brand') FROM products WHERE id = :id")
+        String brand = jdbc.sql("SELECT JSON_VALUE(attributes, '$.brand') FROM product_catalog WHERE id = :id")
                 .param("id", product.getId()).query(String.class).single();
-        Integer price = jdbc.sql("SELECT JSON_VALUE(attributes, '$.price' RETURNING NUMBER) FROM products WHERE id = :id")
+        Integer price = jdbc.sql("SELECT JSON_VALUE(attributes, '$.price' RETURNING NUMBER) FROM product_catalog WHERE id = :id")
                 .param("id", product.getId()).query(Integer.class).single();
 
         assertEquals("acme", brand);
