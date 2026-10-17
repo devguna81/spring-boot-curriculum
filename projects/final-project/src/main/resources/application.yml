@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: final-project
+  datasource:
+    url: jdbc:h2:mem:final-${random.uuid}
+    username: sa
+    password: ""
+  sql:
+    init:
+      # H2용 스크립트(schema-h2.sql)만 읽는다. Oracle용은 oracle 프로파일에서 따로 실행한다.
+      platform: h2
