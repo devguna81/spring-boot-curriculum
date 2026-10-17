@@ -1,0 +1,70 @@
+name: image
+
+# ch32 컨테이너 이미지를 빌드하고, 실제로 띄워 스모크 테스트를 통과하는지 확인한다.
+# 이미지 관련 파일이 바뀔 때만 돈다(build.yml은 모든 변경에서 돈다).
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'examples/ch32-docker/**'
+      - 'examples/ch33-cicd/**'
+      - '.dockerignore'
+      - '.github/workflows/image.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'examples/ch32-docker/**'
+      - 'examples/ch33-cicd/**'
+      - '.dockerignore'
+      - '.github/workflows/image.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 같은 브랜치에서 새 실행이 시작되면 이전 실행은 취소한다.
+concurrency:
+  group: image-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: docker/setup-buildx-action@v4
+
+      # push는 하지 않는다. 러너의 로컬 Docker에 올려(load) 바로 실행해 본다.
+      # 층 캐시는 GitHub Actions 캐시에 저장되어 다음 실행에서 의존성 층을 재사용한다.
+      - name: Build image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          file: examples/ch32-docker/Dockerfile
+          load: true
+          push: false
+          tags: ch32-docker:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run container
+        run: docker run -d --name app -p 8080:8080 ch32-docker:ci
+
+      - name: Smoke test
+        run: examples/ch33-cicd/smoke-test.sh http://localhost:8080 90
+
+      - name: Show container log on failure
+        if: failure()
+        run: docker logs app
+
+      - name: Save image as artifact file
+        run: docker save ch32-docker:ci | gzip > ch32-docker-ci.tar.gz
+
+      - name: Upload image
+        uses: actions/upload-artifact@v7
+        with:
+          name: ch32-docker-image
+          path: ch32-docker-ci.tar.gz
+          retention-days: 3
