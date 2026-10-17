@@ -98,7 +98,9 @@ class UserPageTests {
         mvc.perform(createRequest("kim", "kim@example.com", "abc"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeHasFieldErrors("userForm", "age"))
-                .andExpect(content().string(containsString("value=\"abc\"")));
+                .andExpect(content().string(containsString("value=\"abc\"")))
+                .andExpect(content().string(containsString("나이는 숫자로 입력해 주세요")))
+                .andExpect(content().string(not(containsString("Failed to convert"))));
     }
 
     @Test
