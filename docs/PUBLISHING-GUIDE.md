@@ -1,17 +1,39 @@
 # PUBLISHING-GUIDE
 
-Claude Code가 만든 초안을 사용자가 검토하고, 승인된 챕터만 Agy가 블로그에 게시하는 절차.
+Claude Code가 코드와 기술 초안을 만들고, 사용자가 검토한 뒤, 승인된 챕터만 Agy가 이미지 생성과 게시글 작성·게시를 맡는 절차.
 
 ## 역할
 
 | 단계 | 담당 | 산출물 |
 |---|---|---|
-| 코드 구현, 빌드, 테스트 | Claude Code | `examples/chNN-*`, `verification.md` |
-| MD 초안 | Claude Code | `docs/chapters/chNN/blog-draft.md` |
+| 코드 구현, 빌드, 테스트, CI | Claude Code | `examples/chNN-*`, `verification.md` |
+| 기술 문서, 블로그 초안 | Claude Code | `docs/chapters/chNN/README.md`, `blog-draft.md` |
 | 검토와 승인 | 사용자 | `CURRICULUM-STATUS.md`의 상태를 `REVIEWED`로 변경 |
-| 게시 | Agy | 블로그 글, 게시 URL |
+| 이미지 생성 | Agy | 본문에 들어갈 삽화, 다이어그램 |
+| 게시글 최종 작성, 게시 | Agy | 블로그 글, 게시 URL |
 
-Claude Code는 블로그에 직접 게시하지 않는다. 승인되지 않은 챕터는 전달하지 않는다.
+Claude Code는 코드와 기술 문서까지만 맡고, 이미지 생성과 게시글 작성·게시는 하지 않는다. 승인되지 않은 챕터는 Agy에 전달하지 않는다.
+
+### 경계 규칙
+
+- **기술 내용의 원본은 `blog-draft.md`다.** 코드, 명령, 출력, 버전, 오류 메시지는 Agy가 문장을 다듬더라도 바꾸지 않는다.
+- **Agy가 정하는 것:** 문체, 글의 흐름, 제목 표현, 이미지의 시각 표현과 배치.
+- **Claude Code가 정하는 것:** 설명하는 기술 사실, 코드 인용, 실행 결과.
+- 이미지에 코드나 터미널 출력이 들어가면 `blog-draft.md`와 `verification.md`의 실제 값만 쓴다. 이미지용으로 값을 지어내지 않는다.
+- Agy가 기술 내용 수정이 필요하다고 판단하면 게시를 멈추고 Claude Code에 되돌려 보낸다.
+
+## 이미지 요청
+
+Claude Code는 초안에 삽화가 필요한 위치를 표시하고, 이미지 자체는 만들지 않는다. 표시는 챕터 문서 `docs/chapters/chNN/image-requests.md`에 모은다.
+
+| 열 | 내용 |
+|---|---|
+| 위치 | 초안의 절 이름 |
+| 목적 | 그림이 독자에게 전달할 것 |
+| 사실 근거 | 그림에 들어갈 이름, 순서, 값의 출처 (코드 경로 또는 `verification.md`) |
+| 형식 | 흐름도, 구조도, 비교표 등 |
+
+Agy는 이 표를 보고 이미지를 만든다. 요청 파일이 없는 챕터는 이미지 없이 게시해도 된다.
 
 ## 대상 블로그
 
@@ -34,6 +56,7 @@ PLANNED -> IMPLEMENTING -> CODE_READY -> VERIFIED -> DRAFT_READY -> REVIEWED -> 
 |---|---|
 | Chapter ID | 예: `ch01` |
 | 승인된 초안 | `docs/chapters/chNN/blog-draft.md` |
+| 이미지 요청 | `docs/chapters/chNN/image-requests.md` (있는 경우) |
 | GitHub 예제 URL | 초안의 "GitHub 예제 링크" 절 |
 | 검증된 Commit SHA | `verification.md`, `CURRICULUM-STATUS.md` |
 | 빌드/테스트 결과 | `verification.md` |
