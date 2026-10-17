@@ -1,0 +1,19 @@
+# 로컬 Oracle Free 컨테이너. 비밀번호는 파일에 적지 않고 실행할 때 환경 변수로 넘긴다.
+#
+#   ORACLE_SYS_PASSWORD=... ORACLE_APP_PASSWORD=... docker compose up -d
+#
+# 접속 URL: jdbc:oracle:thin:@//localhost:1521/FREEPDB1
+services:
+  oracle:
+    image: gvenzl/oracle-free:23-slim-faststart
+    ports:
+      - "1521:1521"
+    environment:
+      ORACLE_PASSWORD: ${ORACLE_SYS_PASSWORD:?ORACLE_SYS_PASSWORD를 지정하세요}
+      APP_USER: curriculum
+      APP_USER_PASSWORD: ${ORACLE_APP_PASSWORD:?ORACLE_APP_PASSWORD를 지정하세요}
+    healthcheck:
+      test: ["CMD", "healthcheck.sh"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
