@@ -18,7 +18,7 @@ ch06, ch19
 |---|---|
 | 예제 | [`examples/ch20-thymeleaf-crud`](../../../examples/ch20-thymeleaf-crud) |
 | 화면 | `/users`, `/users/new`, `/users/{id}/edit`, 수정과 삭제는 POST |
-| 테스트 | 폼 표시, 검증 실패, 변환 오류, 중복 이메일, PRG와 Flash, 이스케이프, 수정, 삭제, 404 (15건) |
+| 테스트 | 폼 표시, 검증 실패, 변환 오류, 중복 이메일, PRG와 Flash, 이스케이프, 수정, 삭제, 404 (14건) |
 | 다루지 않는 것 | CSRF 방어와 인증(ch30), DB 저장(메모리 저장소 사용), 파일 업로드 |
 
 ## 다음 챕터
