@@ -7,7 +7,7 @@
 
 ## 전체 구성
 
-총 8개 Part, 37개 챕터 (ch01~ch33 + 종합 프로젝트 f01~f04).
+총 8개 Part, 40개 챕터 (ch01~ch36 + 종합 프로젝트 f01~f04).
 
 | Part | 주제 | 챕터 |
 |---|---|---|
@@ -75,6 +75,9 @@
 | ch24 | Contract와 Port/Adapter | Domain Model, Contract Interface, Port/Adapter, Internal/External API | 외부 연동을 Port 뒤로 숨김 | ch18, ch23 |
 | ch25 | Composite와 Orchestration | Composite, Orchestration, 책임 분리 | 여러 서비스를 조합하는 Orchestrator | ch24 |
 | ch26 | Modular Monolith | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | 모듈 분리와 의존성 검증 테스트 | ch11, ch25 |
+| ch34 | 전략 패턴 | Strategy, key로 고르기, 전략 목록 주입, Composite와의 차이 | 배송비 계산 전략 3종과 새 전략 추가 | ch03, ch25 |
+| ch35 | AOP | Aspect, `@Around`, 포인트컷(애노테이션/패키지), 프록시와 자기 호출 | 실행 시간 측정과 호출 횟수 집계 | ch03, ch11 |
+| ch36 | 모듈 호출 오케스트레이션과 온디맨드 배치 | 가변 IN, 공통 맥락, Registry, Handler, 실패 정책, 모듈 Composite, chunk 배치 | 회원 요약을 요청 경로와 배치 경로로 처리 | ch10, ch11, ch24, ch25, ch26 |
 
 Contract는 Spring Boot 내장 기능이 아니라 API 계약과 인터페이스 기반 설계 개념으로 설명한다.
 

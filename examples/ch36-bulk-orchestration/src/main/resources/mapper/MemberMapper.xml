@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jqdom.curriculum.ch36.member.internal.MemberMapper">
+
+    <!-- 빈 목록이면 IN () 이 되어 문법 오류가 나므로 호출하는 쪽(Chunks)이 빈 목록을 보내지 않는다. -->
+    <select id="findByIds" resultType="com.jqdom.curriculum.ch36.member.internal.MemberRow">
+        SELECT id, name, joined_year, dormant
+        FROM member
+        WHERE id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY id
+    </select>
+
+    <select id="idsAfter" resultType="long">
+        SELECT id
+        FROM member
+        WHERE id &gt; #{lastId}
+        ORDER BY id
+        FETCH FIRST #{limit} ROWS ONLY
+    </select>
+</mapper>
