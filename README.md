@@ -185,6 +185,54 @@ curl "http://localhost:8080/orders?item=book&urgent=true"
 curl http://localhost:8080/beans
 ```
 
+#### 조회 API 호출 (Chapter 04)
+
+```bash
+./gradlew :examples:ch04-rest-controller:bootRun
+```
+
+```bash
+curl http://localhost:8080/users
+curl "http://localhost:8080/users?keyword=kim&limit=1"
+curl -i http://localhost:8080/users/999   # 404
+```
+
+#### CRUD API 호출 (Chapter 05)
+
+```bash
+./gradlew :examples:ch05-crud-api:bootRun
+```
+
+```bash
+curl -i -X POST http://localhost:8080/users -H "Content-Type: application/json" \
+  -d '{"name":"kim","email":"kim@example.com","age":28}'
+curl -X PATCH http://localhost:8080/users/1 -H "Content-Type: application/json" -d '{"age":29}'
+curl -i -X DELETE http://localhost:8080/users/1
+```
+
+#### 검증 실패 확인 (Chapter 06)
+
+```bash
+./gradlew :examples:ch06-validation:bootRun
+```
+
+```bash
+curl -i -X POST http://localhost:8080/users -H "Content-Type: application/json" \
+  -d '{"name":"k","email":"kim@gmail.com","age":-1}'   # 400
+curl -i "http://localhost:8080/users?limit=0"                 # 400
+```
+
+#### 공통 응답 확인 (Chapter 07)
+
+```bash
+./gradlew :examples:ch07-exception-handling:bootRun
+```
+
+```bash
+curl -i http://localhost:8080/users/999     # 404, error.code=NOT_FOUND
+curl -i http://localhost:8080/demo/error    # 500, 내부 메시지는 응답에 없음
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -237,10 +285,10 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | [`examples/ch01-hello-spring`](examples/ch01-hello-spring) |
 | **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | [`examples/ch02-config-profile`](examples/ch02-config-profile) |
 | **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | [`examples/ch03-ioc-di-bean`](examples/ch03-ioc-di-bean) |
-| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - |
-| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
-| **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - |
-| **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | - |
+| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | [`examples/ch04-rest-controller`](examples/ch04-rest-controller) |
+| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | [`examples/ch05-crud-api`](examples/ch05-crud-api) |
+| **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | [`examples/ch06-validation`](examples/ch06-validation) |
+| **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | [`examples/ch07-exception-handling`](examples/ch07-exception-handling) |
 | **ch08. DataSource와 H2** | DataSource, 커넥션 풀, H2, 초기 스키마/데이터 | - |
 | **ch09. MyBatis 기본과 CRUD** | Mapper Interface, XML Mapper, `resultMap`, CRUD | - |
 | **ch10. 동적 SQL, JOIN, 페이징** | `<if>`/`<where>`/`<foreach>`, JOIN 매핑, 페이징 | - |

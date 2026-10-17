@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch05-crud-api
