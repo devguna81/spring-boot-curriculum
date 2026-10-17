@@ -24,7 +24,7 @@ ch02-config-profile/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch02/
+    │   ├── java/com/jqdom/curriculum/ch02/
     │   │   ├── Ch02Application.java
     │   │   ├── ConfigController.java
     │   │   └── GreetingProperties.java
@@ -32,7 +32,7 @@ ch02-config-profile/
     │       ├── application-dev.yml
     │       ├── application-prod.yml
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch02/
+    └── test/java/com/jqdom/curriculum/ch02/
         ├── Ch02ApplicationTests.java
         ├── DefaultProfileTests.java
         ├── ProfileTests.java

@@ -23,7 +23,7 @@ ch31-logging-actuator/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch31/
+    │   ├── java/com/jqdom/curriculum/ch31/
     │   │   ├── Ch31Application.java
     │   │   ├── OrderController.java
     │   │   ├── RequestIdFilter.java
@@ -31,7 +31,7 @@ ch31-logging-actuator/
     │   │   └── StockSwitch.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch31/
+    └── test/java/com/jqdom/curriculum/ch31/
         ├── ActuatorTests.java
         ├── Ch31ApplicationTests.java
         ├── LoggingTests.java

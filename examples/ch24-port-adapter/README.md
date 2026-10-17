@@ -24,7 +24,7 @@ ch24-port-adapter/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch24/
+    │   ├── java/com/jqdom/curriculum/ch24/
     │   │   ├── Ch24Application.java
     │   │   ├── adapter/
     │   │   │   ├── address/
@@ -54,7 +54,7 @@ ch24-port-adapter/
     │   │       └── Member.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch24/
+    └── test/java/com/jqdom/curriculum/ch24/
         ├── ArchitectureTests.java
         ├── Ch24ApplicationTests.java
         ├── FakeAddressServer.java

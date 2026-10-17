@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.devguna.curriculum.ch15.ProductMapper">
+<mapper namespace="com.jqdom.curriculum.ch15.ProductMapper">
 
     <!--
         attributes의 자바 타입이 ProductAttributes라서 등록된 TypeHandler가 자동으로 적용된다.

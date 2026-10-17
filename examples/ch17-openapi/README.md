@@ -23,7 +23,7 @@ ch17-openapi/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch17/
+    │   ├── java/com/jqdom/curriculum/ch17/
     │   │   ├── AllowedEmailDomain.java
     │   │   ├── AllowedEmailDomainValidator.java
     │   │   ├── ApiError.java
@@ -47,7 +47,7 @@ ch17-openapi/
     │   └── resources/
     │       ├── application-prod.yml
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch17/
+    └── test/java/com/jqdom/curriculum/ch17/
         ├── ApiResponseTests.java
         ├── Ch17ApplicationTests.java
         ├── GlobalExceptionHandlerTests.java

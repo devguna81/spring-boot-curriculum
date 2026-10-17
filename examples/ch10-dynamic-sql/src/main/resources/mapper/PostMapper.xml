@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.devguna.curriculum.ch10.PostMapper">
+<mapper namespace="com.jqdom.curriculum.ch10.PostMapper">
 
     <!--
         JOIN 결과의 컬럼 일부를 작성자 객체로 묶는다. 생성자 매핑이라 record에도 쓸 수 있다.
@@ -11,11 +11,11 @@
             <idArg column="id" javaType="_long"/>
             <arg column="title" javaType="string"/>
             <arg column="status" javaType="string"/>
-            <arg resultMap="authorMap" javaType="com.devguna.curriculum.ch10.PostSummary$Author"/>
+            <arg resultMap="authorMap" javaType="com.jqdom.curriculum.ch10.PostSummary$Author"/>
         </constructor>
     </resultMap>
 
-    <resultMap id="authorMap" type="com.devguna.curriculum.ch10.PostSummary$Author">
+    <resultMap id="authorMap" type="com.jqdom.curriculum.ch10.PostSummary$Author">
         <constructor>
             <idArg column="author_id" javaType="_long"/>
             <arg column="author_name" javaType="string"/>
@@ -63,7 +63,7 @@
     <resultMap id="userWithPostsMap" type="UserWithPosts">
         <id property="id" column="user_id"/>
         <result property="name" column="user_name"/>
-        <collection property="posts" ofType="com.devguna.curriculum.ch10.UserWithPosts$PostTitle">
+        <collection property="posts" ofType="com.jqdom.curriculum.ch10.UserWithPosts$PostTitle">
             <constructor>
                 <idArg column="post_id" javaType="_long"/>
                 <arg column="post_title" javaType="string"/>

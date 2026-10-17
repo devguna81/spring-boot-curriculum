@@ -23,7 +23,7 @@ ch20-thymeleaf-crud/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch20/
+    │   ├── java/com/jqdom/curriculum/ch20/
     │   │   ├── Ch20Application.java
     │   │   ├── DuplicateEmailException.java
     │   │   ├── User.java
@@ -42,7 +42,7 @@ ch20-thymeleaf-crud/
     │           └── users/
     │               ├── form.html
     │               └── list.html
-    └── test/java/com/devguna/curriculum/ch20/
+    └── test/java/com/jqdom/curriculum/ch20/
         └── UserPageTests.java
 ```
 

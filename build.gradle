@@ -1,6 +1,6 @@
 // 루트 프로젝트는 공통 설정만 둔다. 각 예제의 의존성은 examples/<챕터>/build.gradle에 있다.
 subprojects {
-    group = 'com.devguna.curriculum'
+    group = 'com.jqdom.curriculum'
     version = '0.0.1-SNAPSHOT'
 
     repositories {

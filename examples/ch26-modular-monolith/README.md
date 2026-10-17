@@ -25,7 +25,7 @@ ch26-modular-monolith/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch26/
+    │   ├── java/com/jqdom/curriculum/ch26/
     │   │   ├── Ch26Application.java
     │   │   ├── catalog/
     │   │   │   ├── api/
@@ -55,7 +55,7 @@ ch26-modular-monolith/
     │       ├── application.yml
     │       ├── data.sql
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch26/
+    └── test/java/com/jqdom/curriculum/ch26/
         ├── ArchitectureTests.java
         ├── Ch26ApplicationTests.java
         ├── OrderFlowTests.java

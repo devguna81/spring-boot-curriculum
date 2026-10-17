@@ -24,7 +24,7 @@ ch14-oracle-json/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch14/
+    │   ├── java/com/jqdom/curriculum/ch14/
     │   │   ├── Ch14Application.java
     │   │   ├── Product.java
     │   │   ├── ProductController.java
@@ -37,7 +37,7 @@ ch14-oracle-json/
     │       ├── oracle/
     │       │   └── schema-oracle.sql
     │       └── schema-h2.sql
-    └── test/java/com/devguna/curriculum/ch14/
+    └── test/java/com/jqdom/curriculum/ch14/
         ├── Ch14ApplicationTests.java
         └── OracleJsonTests.java
 ```

@@ -25,13 +25,13 @@ ch32-docker/
 ├── docker-compose.yml
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch32/
+    │   ├── java/com/jqdom/curriculum/ch32/
     │   │   ├── Ch32Application.java
     │   │   └── VisitController.java
     │   └── resources/
     │       ├── application.yml
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch32/
+    └── test/java/com/jqdom/curriculum/ch32/
         └── Ch32ApplicationTests.java
 ```
 

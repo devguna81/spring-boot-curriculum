@@ -23,7 +23,7 @@ ch06-validation/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch06/
+    │   ├── java/com/jqdom/curriculum/ch06/
     │   │   ├── AllowedEmailDomain.java
     │   │   ├── AllowedEmailDomainValidator.java
     │   │   ├── Ch06Application.java
@@ -37,7 +37,7 @@ ch06-validation/
     │   │   └── UserService.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch06/
+    └── test/java/com/jqdom/curriculum/ch06/
         ├── Ch06ApplicationTests.java
         ├── ConstraintTests.java
         └── UserValidationApiTests.java

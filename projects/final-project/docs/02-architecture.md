@@ -3,7 +3,7 @@
 ## 패키지
 
 ```text
-com.devguna.curriculum.finalproject
+com.jqdom.curriculum.finalproject
   contract/   외부에 약속하는 요청/응답 타입 (어떤 패키지도 참조하지 않는다)
   common/     오류 처리, 페이징 같은 공통 코드
   user/       회원 모듈   api/ (공개)  internal/ (비공개)

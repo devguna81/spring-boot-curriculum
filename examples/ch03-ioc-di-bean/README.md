@@ -23,7 +23,7 @@ ch03-ioc-di-bean/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/
+    │   ├── java/com/jqdom/curriculum/
     │   │   ├── ch03/
     │   │   │   ├── AppConfig.java
     │   │   │   ├── BeanController.java
@@ -37,7 +37,7 @@ ch03-ioc-di-bean/
     │   │       └── OutsideComponent.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch03/
+    └── test/java/com/jqdom/curriculum/ch03/
         ├── BeanWiringTests.java
         ├── Ch03ApplicationTests.java
         ├── OrderServiceUnitTests.java

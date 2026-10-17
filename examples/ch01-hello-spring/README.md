@@ -15,12 +15,12 @@ ch01-hello-spring/
 ├── build.gradle
 └── src
     ├── main
-    │   ├── java/com/devguna/curriculum/ch01
+    │   ├── java/com/jqdom/curriculum/ch01
     │   │   ├── Ch01Application.java    # 시작점 (@SpringBootApplication)
     │   │   ├── HelloController.java    # GET /hello, GET /info
     │   │   └── AppInfo.java            # /info 응답 record
     │   └── resources/application.yml
-    └── test/java/com/devguna/curriculum/ch01
+    └── test/java/com/jqdom/curriculum/ch01
         ├── Ch01ApplicationTests.java   # 컨텍스트 로딩
         └── HelloControllerTests.java   # API 응답 검증
 ```

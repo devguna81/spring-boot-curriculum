@@ -23,7 +23,7 @@ ch19-thymeleaf/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch19/
+    │   ├── java/com/jqdom/curriculum/ch19/
     │   │   ├── Ch19Application.java
     │   │   ├── User.java
     │   │   ├── UserNotFoundException.java
@@ -39,7 +39,7 @@ ch19-thymeleaf/
     │           └── users/
     │               ├── detail.html
     │               └── list.html
-    └── test/java/com/devguna/curriculum/ch19/
+    └── test/java/com/jqdom/curriculum/ch19/
         └── UserPageTests.java
 ```
 

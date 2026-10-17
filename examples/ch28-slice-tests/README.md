@@ -22,7 +22,7 @@ ch28-slice-tests/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch28/
+    │   ├── java/com/jqdom/curriculum/ch28/
     │   │   ├── Ch28Application.java
     │   │   ├── User.java
     │   │   ├── UserController.java
@@ -36,7 +36,7 @@ ch28-slice-tests/
     │       ├── mapper/
     │       │   └── UserMapper.xml
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch28/
+    └── test/java/com/jqdom/curriculum/ch28/
         ├── Ch28ApplicationTests.java
         ├── UserControllerWebTests.java
         ├── UserMapperSliceTests.java

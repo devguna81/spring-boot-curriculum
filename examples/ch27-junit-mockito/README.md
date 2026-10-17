@@ -23,14 +23,14 @@ JUnit Jupiter의 `@Test`, `@Nested`, `@DisplayName`, `@ParameterizedTest`로 테
 ch27-junit-mockito/
 ├── build.gradle
 └── src/
-    ├── main/java/com/devguna/curriculum/ch27/
+    ├── main/java/com/jqdom/curriculum/ch27/
     │   ├── DiscountPolicy.java
     │   ├── DuplicateEmailException.java
     │   ├── MailSender.java
     │   ├── SignupService.java
     │   ├── User.java
     │   └── UserRepository.java
-    └── test/java/com/devguna/curriculum/ch27/
+    └── test/java/com/jqdom/curriculum/ch27/
         ├── DiscountPolicyTests.java
         └── SignupServiceTests.java
 ```

@@ -23,7 +23,7 @@ ch11-transaction/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch11/
+    │   ├── java/com/jqdom/curriculum/ch11/
     │   │   ├── Account.java
     │   │   ├── AccountMapper.java
     │   │   ├── AccountNotFoundException.java
@@ -37,7 +37,7 @@ ch11-transaction/
     │       ├── application.yml
     │       ├── data.sql
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch11/
+    └── test/java/com/jqdom/curriculum/ch11/
         ├── Ch11ApplicationTests.java
         ├── TransactionTests.java
         └── TransferApiTests.java

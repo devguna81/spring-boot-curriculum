@@ -22,7 +22,7 @@ ch29-integration/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch29/
+    │   ├── java/com/jqdom/curriculum/ch29/
     │   │   ├── Ch29Application.java
     │   │   ├── User.java
     │   │   ├── UserController.java
@@ -37,7 +37,7 @@ ch29-integration/
     │       │   └── UserMapper.xml
     │       └── schema.sql
     └── test/
-        ├── java/com/devguna/curriculum/ch29/
+        ├── java/com/jqdom/curriculum/ch29/
         │   ├── Ch29ApplicationTests.java
         │   ├── PostgresContainerIntegrationTests.java
         │   ├── UserScenarioIntegrationTests.java

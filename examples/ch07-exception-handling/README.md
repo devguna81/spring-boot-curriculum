@@ -23,7 +23,7 @@ ch07-exception-handling/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch07/
+    │   ├── java/com/jqdom/curriculum/ch07/
     │   │   ├── AllowedEmailDomain.java
     │   │   ├── AllowedEmailDomainValidator.java
     │   │   ├── ApiError.java
@@ -45,7 +45,7 @@ ch07-exception-handling/
     │   │   └── UserService.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch07/
+    └── test/java/com/jqdom/curriculum/ch07/
         ├── ApiResponseTests.java
         ├── Ch07ApplicationTests.java
         └── GlobalExceptionHandlerTests.java

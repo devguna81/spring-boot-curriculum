@@ -12,7 +12,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.devguna.curriculum.ch13
+  type-aliases-package: com.jqdom.curriculum.ch13
   configuration:
     map-underscore-to-camel-case: true
     # 값이 null일 때 드라이버에 알려 줄 JDBC 타입. 기본값(OTHER)은 Oracle 드라이버가 받아들이지 못한다.

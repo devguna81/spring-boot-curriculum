@@ -44,7 +44,7 @@ ch22-react-rest/
 │   └── vite.config.js
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch22/
+    │   ├── java/com/jqdom/curriculum/ch22/
     │   │   ├── Ch22Application.java
     │   │   ├── CorsConfig.java
     │   │   ├── DuplicateEmailException.java
@@ -57,7 +57,7 @@ ch22-react-rest/
     │   │   └── UserService.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch22/
+    └── test/java/com/jqdom/curriculum/ch22/
         └── UserApiTests.java
 ```
 
