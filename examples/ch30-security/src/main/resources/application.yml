@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch30-security

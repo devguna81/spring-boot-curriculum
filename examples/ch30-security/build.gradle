@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    // @WithMockUser, httpBasic() 같은 테스트 도구와 MockMvc 연동. 버전은 Boot BOM이 관리한다.
+    testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
