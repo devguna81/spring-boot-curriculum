@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: ch26-modular-monolith
+  datasource:
+    # 컨텍스트마다 별도 DB를 쓰도록 이름에 무작위 값을 붙인다(ch08 참고).
+    url: jdbc:h2:mem:ch26-${random.uuid}
+    username: sa
+    password: ""

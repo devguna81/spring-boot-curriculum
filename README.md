@@ -309,6 +309,17 @@ npm ci
 npm run dev                                          # http://localhost:5173
 ```
 
+#### 아키텍처 예제 (Chapter 23~26)
+
+```bash
+./gradlew :examples:ch23-layered-solid:test
+./gradlew :examples:ch24-port-adapter:test
+./gradlew :examples:ch25-composite-orchestration:bootRun   # POST http://localhost:8080/api/orders
+./gradlew :examples:ch26-modular-monolith:bootRun          # POST http://localhost:8080/api/orders
+```
+
+ch24는 외부 주소 API를 호출하는 구조라서 `bootRun` 대신 테스트로 확인합니다.
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -380,10 +391,10 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | [`examples/ch20-thymeleaf-crud`](examples/ch20-thymeleaf-crud) |
 | **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | [`examples/ch21-react-basics`](examples/ch21-react-basics) |
 | **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | [`examples/ch22-react-rest`](examples/ch22-react-rest) |
-| **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - |
-| **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - |
-| **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | - |
-| **ch26. Modular Monolith** | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | - |
+| **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | [`examples/ch23-layered-solid`](examples/ch23-layered-solid) |
+| **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | [`examples/ch24-port-adapter`](examples/ch24-port-adapter) |
+| **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | [`examples/ch25-composite-orchestration`](examples/ch25-composite-orchestration) |
+| **ch26. Modular Monolith** | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | [`examples/ch26-modular-monolith`](examples/ch26-modular-monolith) |
 | **ch27. JUnit과 Mockito** | 단위 테스트, Mock, 검증 | - |
 | **ch28. 계층별 테스트** | Controller, Service, MyBatis 테스트 | - |
 | **ch29. 통합 테스트** | `@SpringBootTest`, 테스트 데이터, 컨테이너 | - |
