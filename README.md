@@ -185,6 +185,18 @@ curl "http://localhost:8080/orders?item=book&urgent=true"
 curl http://localhost:8080/beans
 ```
 
+#### 조회 API 호출 (Chapter 04)
+
+```bash
+./gradlew :examples:ch04-rest-controller:bootRun
+```
+
+```bash
+curl http://localhost:8080/users
+curl "http://localhost:8080/users?keyword=kim&limit=1"
+curl -i http://localhost:8080/users/999   # 404
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -237,7 +249,7 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | [`examples/ch01-hello-spring`](examples/ch01-hello-spring) |
 | **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | [`examples/ch02-config-profile`](examples/ch02-config-profile) |
 | **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | [`examples/ch03-ioc-di-bean`](examples/ch03-ioc-di-bean) |
-| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - |
+| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | [`examples/ch04-rest-controller`](examples/ch04-rest-controller) |
 | **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
 | **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - |
 | **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | - |
