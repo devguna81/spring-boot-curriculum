@@ -10,3 +10,4 @@ rootProject.name = 'spring-boot-curriculum'
 // 예제는 챕터가 추가될 때마다 한 줄씩 늘린다.
 include 'examples:ch01-hello-spring'
 include 'examples:ch02-config-profile'
+include 'examples:ch03-ioc-di-bean'
