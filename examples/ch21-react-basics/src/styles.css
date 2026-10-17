@@ -1,0 +1,6 @@
+body { font-family: sans-serif; margin: 2rem; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid #ccc; padding: .4rem .8rem; }
+.inactive { color: #999; }
+nav a { margin-right: 1rem; }
+.controls { display: flex; gap: 1.5rem; margin: 1rem 0; }
