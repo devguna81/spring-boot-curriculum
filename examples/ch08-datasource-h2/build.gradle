@@ -1,0 +1,16 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    // DataSource, HikariCP 커넥션 풀, JdbcClient 자동 구성을 가져온다.
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    // 인메모리 데이터베이스. 런타임에만 필요하다.
+    runtimeOnly 'com.h2database:h2'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}

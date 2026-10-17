@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: ch08-datasource-h2
+  datasource:
+    # 인메모리 H2. 애플리케이션이 종료되면 데이터도 사라진다.
+    # 이름 뒤에 무작위 값을 붙여 컨텍스트마다 별도 DB를 쓴다.
+    # 고정 이름이면 한 JVM에서 컨텍스트가 둘 이상 뜰 때(테스트) 같은 DB를 공유해 schema.sql이 두 번 실행된다.
+    url: jdbc:h2:mem:curriculum-${random.uuid}
+    username: sa
+    password: ""
+    hikari:
+      pool-name: curriculum-pool
+      maximum-pool-size: 5
+      minimum-idle: 2
+  sql:
+    init:
+      # 임베디드 DB는 기본값이 always이지만, 의도를 드러내려고 명시한다.
+      mode: always
