@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.ch10.PostMapper">
+
+    <!--
+        JOIN 결과의 컬럼 일부를 작성자 객체로 묶는다. 생성자 매핑이라 record에도 쓸 수 있다.
+        record의 long(기본형) 인자에는 javaType="_long"을 쓴다. "long"은 Long(래퍼)으로 해석되어 생성자를 찾지 못한다.
+    -->
+    <resultMap id="postSummaryMap" type="PostSummary">
+        <constructor>
+            <idArg column="id" javaType="_long"/>
+            <arg column="title" javaType="string"/>
+            <arg column="status" javaType="string"/>
+            <arg resultMap="authorMap" javaType="com.devguna.curriculum.ch10.PostSummary$Author"/>
+        </constructor>
+    </resultMap>
+
+    <resultMap id="authorMap" type="com.devguna.curriculum.ch10.PostSummary$Author">
+        <constructor>
+            <idArg column="author_id" javaType="_long"/>
+            <arg column="author_name" javaType="string"/>
+        </constructor>
+    </resultMap>
+
+    <!-- 값이 있는 조건만 AND로 이어 붙인다. 조건이 하나도 없으면 WHERE 자체가 생략된다. -->
+    <sql id="searchConditions">
+        <where>
+            <if test="cond.keyword != null and cond.keyword != ''">
+                AND p.title LIKE CONCAT('%', #{cond.keyword}, '%')
+            </if>
+            <if test="cond.authorId != null">
+                AND p.author_id = #{cond.authorId}
+            </if>
+            <if test="cond.statuses != null and !cond.statuses.isEmpty()">
+                AND p.status IN
+                <foreach collection="cond.statuses" item="status" open="(" separator="," close=")">
+                    #{status}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <select id="search" resultMap="postSummaryMap">
+        SELECT p.id, p.title, p.status, u.id AS author_id, u.name AS author_name
+        FROM posts p
+        JOIN users u ON u.id = p.author_id
+        <include refid="searchConditions"/>
+        <!-- 정렬 기준은 ${} 로 넘기지 않고 choose로 허용 목록 안에서만 고른다. -->
+        <choose>
+            <when test="cond.sort == 'title'">ORDER BY p.title ASC, p.id DESC</when>
+            <otherwise>ORDER BY p.id DESC</otherwise>
+        </choose>
+        OFFSET #{offset} ROWS FETCH NEXT #{limit} ROWS ONLY
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*)
+        FROM posts p
+        <include refid="searchConditions"/>
+    </select>
+
+    <!-- 1:N은 collection으로 묶는다. 같은 사용자 id의 행들이 하나의 객체와 글 목록으로 합쳐진다. -->
+    <resultMap id="userWithPostsMap" type="UserWithPosts">
+        <id property="id" column="user_id"/>
+        <result property="name" column="user_name"/>
+        <collection property="posts" ofType="com.devguna.curriculum.ch10.UserWithPosts$PostTitle">
+            <constructor>
+                <idArg column="post_id" javaType="_long"/>
+                <arg column="post_title" javaType="string"/>
+            </constructor>
+        </collection>
+    </resultMap>
+
+    <select id="findUserWithPosts" resultMap="userWithPostsMap">
+        SELECT u.id AS user_id, u.name AS user_name, p.id AS post_id, p.title AS post_title
+        FROM users u
+        LEFT JOIN posts p ON p.author_id = u.id
+        WHERE u.id = #{userId}
+        ORDER BY p.id
+    </select>
+</mapper>

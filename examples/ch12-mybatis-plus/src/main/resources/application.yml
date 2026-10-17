@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: ch12-mybatis-plus
+  datasource:
+    url: jdbc:h2:mem:curriculum-${random.uuid}
+    username: sa
+    password: ""
+
+mybatis-plus:
+  # ch09와 같은 방식으로 XML Mapper를 함께 쓴다.
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    # MyBatis-Plus는 기본값이 true지만, 의도를 드러내려고 명시한다.
+    map-underscore-to-camel-case: true

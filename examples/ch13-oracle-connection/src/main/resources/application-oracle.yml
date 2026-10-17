@@ -1,0 +1,16 @@
+# 접속 정보는 파일에 적지 않고 환경 변수로 받는다.
+#   ORACLE_URL=jdbc:oracle:thin:@//localhost:1521/FREEPDB1
+#   ORACLE_USERNAME, ORACLE_PASSWORD
+spring:
+  datasource:
+    url: ${ORACLE_URL}
+    username: ${ORACLE_USERNAME}
+    password: ${ORACLE_PASSWORD}
+    hikari:
+      pool-name: oracle-pool
+      maximum-pool-size: 5
+      connection-test-query: SELECT 1 FROM DUAL
+  sql:
+    init:
+      # 운영 데이터베이스에 스크립트를 자동 실행하지 않는다. 테이블은 src/main/resources/oracle/schema-oracle.sql로 만든다.
+      mode: never

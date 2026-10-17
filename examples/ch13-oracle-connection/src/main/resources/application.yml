@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: ch13-oracle-connection
+  datasource:
+    url: jdbc:h2:mem:curriculum-${random.uuid}
+    username: sa
+    password: ""
+  sql:
+    init:
+      # schema-h2.sql, data-h2.sql만 읽는다. Oracle용 스크립트는 oracle Profile에서 따로 쓴다.
+      platform: h2
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.devguna.curriculum.ch13
+  configuration:
+    map-underscore-to-camel-case: true
+    # 값이 null일 때 드라이버에 알려 줄 JDBC 타입. 기본값(OTHER)은 Oracle 드라이버가 받아들이지 못한다.
+    # YAML에서 따옴표 없는 NULL은 문자열이 아니라 null 값이므로 반드시 따옴표로 감싼다.
+    jdbc-type-for-null: "NULL"
