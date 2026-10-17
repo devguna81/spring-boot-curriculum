@@ -20,9 +20,6 @@ Java 기본 문법 (클래스, 메서드, record)
 | 테스트 | `@SpringBootTest` + MockMvc 4건 |
 | 다루지 않는 것 | Profile과 외부 설정(ch02), DI와 Bean(ch03), CRUD(ch05) |
 
-## 문서
-
-
 ## 다음 챕터
 
 ch02. 설정과 Profile

@@ -1,7 +1,7 @@
 # TECH-STACK
 
-확정 버전과 근거. 버전은 루트 `gradle.properties`와 각 예제의 `build.gradle`이 단일 소스이며, 변경하면 이 문서도 함께 갱신한다.
-조사 기준일: 2026-10-17 (Maven Central, Spring Initializr 실측)
+커리큘럼에서 사용하는 기술과 버전. 버전은 루트 `gradle.properties`와 각 예제의 `build.gradle`이 기준이며, 변경하면 이 문서도 함께 고친다.
+기준일: 2026-10-17
 
 ## 확정 버전
 
@@ -20,9 +20,9 @@
 | DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch13 | Java 11+ 용 드라이버, Maven Central 최신 |
 | Frontend | React + Vite | 해당 챕터에서 확정 | ch21 | Node LTS 기준으로 그 시점에 재확인 |
 
-## Boot 4에서 달라진 점 (실측)
+## Boot 4에서 달라진 점
 
-예전 글과 예제를 그대로 복사하면 컴파일이 안 되는 지점이다. 해당 챕터에서 다시 다룬다.
+Boot 3 자료의 코드를 그대로 가져오면 컴파일되지 않는 지점이다. 해당 챕터에서 다시 다룬다.
 
 | 항목 | Boot 3.x | Boot 4.x |
 |---|---|---|
@@ -32,32 +32,28 @@
 | `@WebMvcTest` | `org.springframework.boot.test.autoconfigure.web.servlet` | `org.springframework.boot.webmvc.test.autoconfigure` |
 | 내장 Tomcat | 10.x | 11.x (ch01 실행 로그: Apache Tomcat/11.0.24) |
 
-위 패키지 경로는 `spring-boot-webmvc-test-4.1.1.jar`의 클래스 목록으로 확인했다.
 
-## MyBatis-Plus 검토 (2026-10-17)
+## MyBatis-Plus
 
 | 항목 | 내용 |
 |---|---|
 | 스타터 | `com.baomidou:mybatis-plus-spring-boot4-starter:3.5.17` (Boot 3용 `-spring-boot3-starter`와 별도 아티팩트) |
-| 빌드 기준 | 스타터 POM이 Boot **4.0.1**, mybatis-spring **4.0.0** 기준이다. 이 저장소의 Boot 4.1.1과 공식 스타터(mybatis-spring 4.1.0)보다 한 단계 늦다 |
+| 기준 버전 | 스타터가 Boot 4.0.1, mybatis-spring 4.0.0 기준으로 만들어졌다. 이 저장소의 Boot 4.1.1, 공식 MyBatis 스타터(mybatis-spring 4.1.0)보다 한 단계 이전 버전이다 |
 | 페이징 | 3.5.9 이후 `PaginationInnerInterceptor`를 쓰려면 `mybatis-plus-jsqlparser` 의존성을 따로 추가해야 한다 |
-| 적용 범위 | MyBatis를 대체하지 않고 ch12에서 단순 CRUD 축소용으로 병행한다. XML Mapper와 공존한다 |
+| 사용 범위 | MyBatis를 대체하지 않고 ch12에서 단순 CRUD를 줄이는 용도로 함께 쓴다. XML Mapper와 같이 쓸 수 있다 |
 
-**호환성 실측 (Boot 4.1.1 + H2 Oracle 모드, JDK 21, 임시 프로젝트):**
-`BaseMapper` 삽입/조회/수정/삭제, `LambdaQueryWrapper`, `Page` 페이징(Oracle 방언), XML Mapper 동적 SQL 공존, `IdType.AUTO` 키 생성을 확인했다. 테스트 1건 통과.
+Oracle 시퀀스(`@KeySequence`)와 JSON 컬럼 `TypeHandler` 조합은 ch12~ch15에서 다룬다. Boot 마이너 버전을 올릴 때는 스타터 호환성을 다시 확인한다.
 
-**아직 확인하지 못한 것:** 실제 Oracle(시퀀스 `@KeySequence`, JSON 컬럼 `TypeHandler`)과의 조합은 ch12~ch15에서 검증한다. 스타터가 4.0.1 기준이라 Boot 마이너 업그레이드 때 호환성을 다시 확인해야 한다.
+## 챕터별로 확인할 사항
 
-## 미확정 · 추후 검증 항목
-
-- MyBatis 4.1.0 + Boot 4.1.1 조합: 부모 POM 기준으로만 확인했다. ch09에서 실제 빌드로 검증한 뒤 이 표를 갱신한다.
-- springdoc 3.1.1 + Boot 4.1.1: 위와 동일하게 ch17에서 검증한다.
-- Oracle: 로컬에 Oracle 인스턴스가 없다. Oracle 의존 테스트는 `oracle` 프로파일로 분리하고, 실행하지 못하면 `미검증`으로 기록한다.
+- ch09: MyBatis starter 4.1.0과 Boot 4.1.1 조합
+- ch17: springdoc 3.1.1과 Boot 4.1.1 조합
+- ch13~ch15: Oracle 접속이 필요한 부분은 `oracle` 프로파일로 분리하고, 기본 빌드에는 포함하지 않는다.
 
 ## 개발 환경
 
 | 항목 | 값 |
 |---|---|
 | 필수 | JDK 21 (Gradle Toolchain이 21을 요구한다) |
-| 선택 | Docker (Oracle XE, 컨테이너 빌드 검증용) |
+| 선택 | Docker (Oracle XE, 컨테이너 실습용) |
 | IDE | IntelliJ IDEA 권장 |
