@@ -34,11 +34,11 @@ gradlew.bat :examples:ch01-hello-spring:bootRun
 |---|---|---|
 | 01 | Spring Boot 입문 | [ch01 Hello Spring Boot](examples/ch01-hello-spring), ch02 설정과 Profile, ch03 IoC/DI/Bean |
 | 02 | Spring MVC 및 REST API | ch04~ch07 |
-| 03 | Database 및 MyBatis | ch08~ch14 |
-| 04 | MapStruct 및 API 명세 | ch15~ch17 |
-| 05 | 화면 개발 (Thymeleaf, React) | ch18~ch21 |
-| 06 | 실무 아키텍처 | ch22~ch25 |
-| 07 | 테스트 및 운영 | ch26~ch32 |
+| 03 | Database 및 MyBatis | ch08~ch15 |
+| 04 | MapStruct 및 API 명세 | ch16~ch18 |
+| 05 | 화면 개발 (Thymeleaf, React) | ch19~ch22 |
+| 06 | 실무 아키텍처 | ch23~ch26 |
+| 07 | 테스트 및 운영 | ch27~ch33 |
 | 08 | 종합 프로젝트 | `projects/final-project` |
 
 링크가 걸린 챕터만 구현되어 있습니다.

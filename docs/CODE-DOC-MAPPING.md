@@ -6,7 +6,7 @@
 | 챕터 | 예제 코드 | 챕터 문서 | 블로그 초안 | 검증 기록 |
 |---|---|---|---|---|
 | ch01 | [examples/ch01-hello-spring](../examples/ch01-hello-spring) | [README](chapters/ch01/README.md) | [blog-draft.md](chapters/ch01/blog-draft.md) | [verification.md](chapters/ch01/verification.md) |
-| ch02~ch32 | 예정 | | | |
+| ch02~ch33 | 예정 | | | |
 | f01~f04 | `projects/final-project` 예정 | | | |
 
 ## 규칙

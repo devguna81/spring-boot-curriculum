@@ -41,25 +41,26 @@
 | ch09 | MyBatis 기본과 CRUD | PLANNED |
 | ch10 | 동적 SQL, JOIN, 페이징 | PLANNED |
 | ch11 | 트랜잭션 | PLANNED |
-| ch12 | Oracle 연결 | PLANNED |
-| ch13 | Oracle JSON | PLANNED |
-| ch14 | JSON과 Java 객체 변환 | PLANNED |
-| ch15 | DTO, Domain, MapStruct | PLANNED |
-| ch16 | OpenAPI와 Swagger UI | PLANNED |
-| ch17 | API Contract | PLANNED |
-| ch18 | Thymeleaf 기초 | PLANNED |
-| ch19 | Thymeleaf CRUD | PLANNED |
-| ch20 | React 기초 | PLANNED |
-| ch21 | React와 REST API 연동 | PLANNED |
-| ch22 | Layered Architecture와 SOLID | PLANNED |
-| ch23 | Contract와 Port/Adapter | PLANNED |
-| ch24 | Composite와 Orchestration | PLANNED |
-| ch25 | Modular Monolith | PLANNED |
-| ch26 | JUnit과 Mockito | PLANNED |
-| ch27 | 계층별 테스트 | PLANNED |
-| ch28 | 통합 테스트 | PLANNED |
-| ch29 | Spring Security | PLANNED |
-| ch30 | Logging과 Actuator | PLANNED |
-| ch31 | Docker | PLANNED |
-| ch32 | GitHub Actions와 CI/CD | PLANNED |
+| ch12 | MyBatis-Plus로 반복 CRUD 줄이기 | PLANNED |
+| ch13 | Oracle 연결 | PLANNED |
+| ch14 | Oracle JSON | PLANNED |
+| ch15 | JSON과 Java 객체 변환 | PLANNED |
+| ch16 | DTO, Domain, MapStruct | PLANNED |
+| ch17 | OpenAPI와 Swagger UI | PLANNED |
+| ch18 | API Contract | PLANNED |
+| ch19 | Thymeleaf 기초 | PLANNED |
+| ch20 | Thymeleaf CRUD | PLANNED |
+| ch21 | React 기초 | PLANNED |
+| ch22 | React와 REST API 연동 | PLANNED |
+| ch23 | Layered Architecture와 SOLID | PLANNED |
+| ch24 | Contract와 Port/Adapter | PLANNED |
+| ch25 | Composite와 Orchestration | PLANNED |
+| ch26 | Modular Monolith | PLANNED |
+| ch27 | JUnit과 Mockito | PLANNED |
+| ch28 | 계층별 테스트 | PLANNED |
+| ch29 | 통합 테스트 | PLANNED |
+| ch30 | Spring Security | PLANNED |
+| ch31 | Logging과 Actuator | PLANNED |
+| ch32 | Docker | PLANNED |
+| ch33 | GitHub Actions와 CI/CD | PLANNED |
 | f01~f04 | 종합 프로젝트 | PLANNED |
