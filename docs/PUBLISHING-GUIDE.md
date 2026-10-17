@@ -55,3 +55,22 @@ PLANNED -> IMPLEMENTING -> CODE_READY -> VERIFIED -> DRAFT_READY -> REVIEWED -> 
 - 존재하지 않는 파일, `main`에 반영되지 않은 코드의 `main` 링크는 쓰지 않는다.
 - 글이 가리키는 버전을 고정하기 위해 검증된 Commit SHA를 글 하단에 기록한다.
   SHA로 고정한 링크는 `blob/{SHA}/{경로}` 형식이다.
+
+## 인계 현황
+
+### ch01 (REVIEWED, Agy 전달 대기)
+
+| 항목 | 값 |
+|---|---|
+| Chapter ID | `ch01` |
+| 제목 | Spring Boot 4 시작하기 (1): 프로젝트 만들고 첫 API 실행하기 |
+| 승인된 초안 | `docs/chapters/ch01/blog-draft.md` (맨 위 HTML 주석은 검토자 메모이므로 게시에서 제외) |
+| GitHub 예제 URL | https://github.com/devguna81/spring-boot-curriculum/tree/main/examples/ch01-hello-spring |
+| 검증된 Commit SHA | `61a3bb118238a2f9e8632802c81844f48e9018cc` (예제 코드), `main` 머지 커밋 `fabbb471c311661f17a180eed2cae656f9910c6d` |
+| 빌드/테스트 결과 | 로컬 Docker와 GitHub Actions 모두 `clean build` 성공, 테스트 4/4 통과. 상세는 `docs/chapters/ch01/verification.md` |
+| 블로그 카테고리 ID | 46 |
+| 이전 챕터 | 없음 (시리즈 첫 글) |
+| 다음 챕터 | ch02. 설정과 Profile (미작성, 게시 전이므로 링크 없음) |
+| 미검증 | Windows(`gradlew.bat`) 실행 |
+
+게시 후 Agy가 게시 URL을 `docs/CURRICULUM-STATUS.md`의 ch01 항목에 기록하고 상태를 `PUBLISHED`로 바꾼다.
