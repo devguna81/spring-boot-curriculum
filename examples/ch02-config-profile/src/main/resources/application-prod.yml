@@ -1,0 +1,9 @@
+# --spring.profiles.active=prod 로 실행할 때 적용된다.
+server:
+  port: 8082
+
+app:
+  greeting:
+    prefix: Welcome
+    suffix: "."
+    max-length: 10
