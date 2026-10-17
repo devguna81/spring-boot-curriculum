@@ -16,6 +16,7 @@
 | Persistence (확장) | mybatis-plus-spring-boot4-starter + mybatis-plus-jsqlparser | 3.5.17 | ch12 | Boot 4 전용 스타터. 아래 "MyBatis-Plus 검토" 참조 |
 | API 문서 | springdoc-openapi-starter-webmvc-ui | 3.1.1 | ch17 | 부모 POM이 `spring-boot-starter-parent:4.1.0` |
 | Mapping | MapStruct | 1.6.3 | ch16 | 최신 안정판. 1.7.0은 Beta라 제외 |
+| Template | spring-boot-starter-thymeleaf (Thymeleaf 3.1.5) | Boot BOM 관리 | ch19 | 서버 렌더링 화면 |
 | 구조 검사 | ArchUnit | 1.4.1 | ch18 | JUnit 연동 모듈 없이 코어만 사용 |
 | DB (개발) | H2 | Boot BOM 관리 | ch08 | Boot가 버전을 관리 |
 | DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch13 | Java 11+ 용 드라이버, Maven Central 최신 |
