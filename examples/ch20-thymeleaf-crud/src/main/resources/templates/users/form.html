@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('사용자 입력')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<h1>사용자 입력</h1>
+<!-- th:object 로 폼 객체를 지정하고, *{필드} 로 그 객체의 속성을 가리킨다. -->
+<form th:action="@{${action}}" th:object="${userForm}" method="post">
+  <p th:if="${#fields.hasErrors('*')}" class="error">입력값을 확인해 주세요.</p>
+  <div>
+    <label for="name">이름</label>
+    <input type="text" th:field="*{name}">
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">오류</span>
+  </div>
+  <div>
+    <label for="email">이메일</label>
+    <input type="text" th:field="*{email}">
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error">오류</span>
+  </div>
+  <div>
+    <label for="age">나이</label>
+    <input type="text" th:field="*{age}">
+    <span th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="error">오류</span>
+  </div>
+  <button type="submit">저장</button>
+  <a th:href="@{/users}">취소</a>
+</form>
+</body>
+</html>
