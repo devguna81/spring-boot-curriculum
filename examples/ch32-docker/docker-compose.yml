@@ -1,0 +1,36 @@
+# 실행: DB_PASSWORD=원하는값 docker compose -f examples/ch32-docker/docker-compose.yml up --build
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: app
+      POSTGRES_USER: app
+      # 비밀번호는 파일에 적지 않고 실행할 때 환경 변수로 받는다. 없으면 시작하지 않는다.
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD 환경 변수를 지정하세요}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U app -d app"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build:
+      context: ../..
+      dockerfile: examples/ch32-docker/Dockerfile
+    depends_on:
+      db:
+        # db가 실제로 접속을 받을 수 있게 된 뒤에 앱을 시작한다(단순히 컨테이너가 떴다는 것으로는 부족하다).
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/app
+      SPRING_DATASOURCE_USERNAME: app
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD:?DB_PASSWORD 환경 변수를 지정하세요}
+    ports:
+      # 호스트에서 8080이 이미 쓰이고 있으면 APP_PORT로 바꾼다.
+      - "${APP_PORT:-8080}:8080"
+    restart: unless-stopped
+
+volumes:
+  db-data:

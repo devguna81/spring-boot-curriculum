@@ -320,6 +320,20 @@ npm run dev                                          # http://localhost:5173
 
 ch24는 외부 주소 API를 호출하는 구조라서 `bootRun` 대신 테스트로 확인합니다.
 
+#### 테스트, 보안, 운영, 컨테이너 (Chapter 27~33)
+
+```bash
+./gradlew :examples:ch27-junit-mockito:test
+./gradlew :examples:ch28-slice-tests:test
+./gradlew :examples:ch29-integration:test          # PostgreSQL 컨테이너 테스트는 Docker가 있을 때만 실행
+./gradlew :examples:ch30-security:bootRun          # curl -u kim:kim-pass http://localhost:8080/api/me
+./gradlew :examples:ch31-logging-actuator:bootRun  # curl http://localhost:8080/actuator/health
+
+# Docker (ch32). DB_PASSWORD는 직접 정합니다.
+DB_PASSWORD=원하는값 docker compose -f examples/ch32-docker/docker-compose.yml up --build
+examples/ch33-cicd/smoke-test.sh http://localhost:8080 60
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -395,16 +409,16 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | [`examples/ch24-port-adapter`](examples/ch24-port-adapter) |
 | **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | [`examples/ch25-composite-orchestration`](examples/ch25-composite-orchestration) |
 | **ch26. Modular Monolith** | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | [`examples/ch26-modular-monolith`](examples/ch26-modular-monolith) |
-| **ch27. JUnit과 Mockito** | 단위 테스트, Mock, 검증 | - |
-| **ch28. 계층별 테스트** | Controller, Service, MyBatis 테스트 | - |
-| **ch29. 통합 테스트** | `@SpringBootTest`, 테스트 데이터, 컨테이너 | - |
-| **ch30. Spring Security** | 인증/인가, SecurityFilterChain, 테스트 | - |
-| **ch31. Logging과 Actuator** | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | - |
-| **ch32. Docker** | 멀티 스테이지 빌드, 이미지 실행, compose | - |
-| **ch33. GitHub Actions와 CI/CD** | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | - |
+| **ch27. JUnit과 Mockito** | 단위 테스트, Mock, 검증 | [`examples/ch27-junit-mockito`](examples/ch27-junit-mockito) |
+| **ch28. 계층별 테스트** | Controller, Service, MyBatis 테스트 | [`examples/ch28-slice-tests`](examples/ch28-slice-tests) |
+| **ch29. 통합 테스트** | `@SpringBootTest`, 테스트 데이터, 컨테이너 | [`examples/ch29-integration`](examples/ch29-integration) |
+| **ch30. Spring Security** | 인증/인가, SecurityFilterChain, 테스트 | [`examples/ch30-security`](examples/ch30-security) |
+| **ch31. Logging과 Actuator** | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | [`examples/ch31-logging-actuator`](examples/ch31-logging-actuator) |
+| **ch32. Docker** | 멀티 스테이지 빌드, 이미지 실행, compose | [`examples/ch32-docker`](examples/ch32-docker) |
+| **ch33. GitHub Actions와 CI/CD** | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | [`examples/ch33-cicd`](examples/ch33-cicd) |
 | **f01~f04. 종합 프로젝트** | 설계, 백엔드, 화면과 문서, 품질과 배포 | `projects/final-project` |
 
-예제 모듈이 `-`로 표시된 챕터는 아직 추가되지 않았습니다.
+예제 모듈이 `-`로 표시된 챕터는 아직 추가되지 않았습니다. (ch33의 워크플로 파일은 GitHub 규칙에 따라 `.github/workflows/`에 있습니다.)
 
 ---
 

@@ -1,0 +1,26 @@
+spring:
+  application:
+    name: ch32-docker
+  datasource:
+    # 기본값은 인메모리 H2. 컨테이너에서는 SPRING_DATASOURCE_URL 등 환경 변수가 이 값을 덮어쓴다(ch02의 우선순위).
+    url: jdbc:h2:mem:ch32-${random.uuid}
+    username: sa
+    password: ""
+  sql:
+    init:
+      # H2가 아닌 DB(PostgreSQL)에서도 schema.sql을 실행하려면 always가 필요하다. 스크립트는 여러 번 실행해도 안전하게 썼다.
+      mode: always
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+server:
+  # 컨테이너가 종료 신호를 받으면 처리 중인 요청을 마친 뒤 내려간다.
+  shutdown: graceful
