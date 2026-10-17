@@ -1,0 +1,6 @@
+# 운영에서는 API 문서와 Swagger UI를 끈다. 내부 구조를 외부에 알려 줄 필요가 없다.
+springdoc:
+  api-docs:
+    enabled: false
+  swagger-ui:
+    enabled: false
