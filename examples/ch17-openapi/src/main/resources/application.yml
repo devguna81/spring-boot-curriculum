@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: ch17-openapi
+
+springdoc:
+  # 기본값이지만 위치를 눈에 보이게 적어 둔다.
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    # 메서드 순서 대신 Controller에 선언한 순서로 보여 준다.
+    operations-sorter: method
