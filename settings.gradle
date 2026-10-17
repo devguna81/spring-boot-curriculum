@@ -1,0 +1,11 @@
+pluginManagement {
+    plugins {
+        id 'org.springframework.boot' version "${springBootVersion}"
+        id 'io.spring.dependency-management' version "${dependencyManagementVersion}"
+    }
+}
+
+rootProject.name = 'spring-boot-curriculum'
+
+// 예제는 챕터가 추가될 때마다 한 줄씩 늘린다.
+include 'examples:ch01-hello-spring'
