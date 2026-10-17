@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ch24-port-adapter
+
+# 외부 주소 API의 기본 주소와 타임아웃. 어댑터만 이 값을 읽는다.
+app:
+  address-api:
+    base-url: http://localhost:9090
+    connect-timeout: 1s
+    read-timeout: 2s
