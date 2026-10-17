@@ -1,0 +1,4 @@
+# 설정 파일의 기본 위치. 자세한 사용법(Profile, 외부 설정)은 ch02에서 다룬다.
+spring:
+  application:
+    name: ch01-hello-spring

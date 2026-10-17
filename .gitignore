@@ -6,6 +6,10 @@ build/
 # Maven
 target/
 
+# Node (React 예제)
+node_modules/
+dist/
+
 # IntelliJ IDEA
 .idea/
 *.iml
@@ -30,3 +34,4 @@ Thumbs.db
 .env.*
 application-local.yml
 application-local.properties
+application-oracle-local.yml
