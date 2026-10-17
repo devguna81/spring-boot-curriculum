@@ -91,9 +91,15 @@ jobs:
 
   frontend:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project:
+          - examples/ch21-react-basics
+          - examples/ch22-react-rest/frontend
     defaults:
       run:
-        working-directory: examples/ch21-react-basics
+        working-directory: ${{ matrix.project }}
     steps:
       - uses: actions/checkout@v4
 
@@ -101,7 +107,7 @@ jobs:
         with:
           node-version: '24'
           cache: npm
-          cache-dependency-path: examples/ch21-react-basics/package-lock.json
+          cache-dependency-path: ${{ matrix.project }}/package-lock.json
 
       - run: npm ci
       - run: npm test
