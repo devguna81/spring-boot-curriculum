@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch25-composite-orchestration
