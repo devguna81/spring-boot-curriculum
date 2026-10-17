@@ -6,7 +6,7 @@ import { login } from '../auth/session.js'
 
 const FIELDS = [
   ['username', '아이디 (영소문자, 숫자, _ / 3~30자)', 'text'],
-  ['password', '비밀번호 (8~72자)', 'password'],
+  ['password', '비밀번호 (8자 이상, UTF-8 72바이트 이하 - 한글은 24자까지)', 'password'],
   ['displayName', '표시 이름', 'text'],
 ]
 

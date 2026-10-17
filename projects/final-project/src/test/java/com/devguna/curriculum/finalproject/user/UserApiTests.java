@@ -123,4 +123,25 @@ class UserApiTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.username").value("kim_01"));
     }
+
+    @Test
+    void multibytePasswordLongerThan72BytesIsBadRequest() throws Exception {
+        // 글자 수는 30자라 @Size(max = 72)를 통과하지만 UTF-8로는 90바이트다. bcrypt는 72바이트까지만 받는다.
+        String password = "가".repeat(30);
+
+        mvc.perform(post("/api/v1/users").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"username\":\"kim_02\",\"password\":\"" + password + "\",\"displayName\":\"김\"}"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.issues[0].field").value("password"));
+    }
+
+    @Test
+    void multibytePasswordWithin72BytesCanLogIn() throws Exception {
+        String password = "가".repeat(24); // 72바이트
+        mvc.perform(post("/api/v1/users").contentType(MediaType.APPLICATION_JSON)
+                        .content("{\"username\":\"kim_03\",\"password\":\"" + password + "\",\"displayName\":\"김\"}"))
+                .andExpect(status().isCreated());
+
+        mvc.perform(get("/api/v1/users/me").with(httpBasic("kim_03", password))).andExpect(status().isOk());
+    }
 }
