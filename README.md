@@ -4,8 +4,6 @@ jqdom.com의 **Spring Boot 4 실습형 커리큘럼** 시리즈(8개 Part, 총 3
 
 Spring Boot 입문부터 REST API, MyBatis와 Oracle JSON, MapStruct와 OpenAPI, Thymeleaf와 React 화면, 실무 아키텍처(Contract, Port/Adapter, Modular Monolith), 테스트와 Docker/GitHub Actions 운영, 그리고 사용자·게시판 관리 종합 프로젝트까지 단계별로 빌드하고 실행할 수 있도록 구성합니다.
 
-> **진행 상태:** 챕터는 순차적으로 추가됩니다. 현재 구현된 챕터는 아래 [커리큘럼 표](#전체-커리큘럼-및-모듈-구성-curriculum--modules)의 상태 열에서 확인하세요. 코드가 검증된 챕터만 블로그에 게시합니다.
-
 ---
 
 ## 요구 사항 (Prerequisites)
@@ -198,44 +196,44 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 
 ### 챕터 목록
 
-| 챕터 | 주요 학습 내용 | 예제 모듈 | 상태 |
-|:---|:---|:---|:---:|
-| **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | `examples/ch01-hello-spring` | DRAFT_READY |
-| **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | - | PLANNED |
-| **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | - | PLANNED |
-| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - | PLANNED |
-| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - | PLANNED |
-| **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - | PLANNED |
-| **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | - | PLANNED |
-| **ch08. DataSource와 H2** | DataSource, 커넥션 풀, H2, 초기 스키마/데이터 | - | PLANNED |
-| **ch09. MyBatis 기본과 CRUD** | Mapper Interface, XML Mapper, `resultMap`, CRUD | - | PLANNED |
-| **ch10. 동적 SQL, JOIN, 페이징** | `<if>`/`<where>`/`<foreach>`, JOIN 매핑, 페이징 | - | PLANNED |
-| **ch11. 트랜잭션** | `@Transactional`, 전파/롤백 규칙, 경계 설계 | - | PLANNED |
-| **ch12. MyBatis-Plus로 반복 CRUD 줄이기** | `BaseMapper`, `LambdaQueryWrapper`, 페이징 플러그인, XML Mapper와 공존, MyBatis와의 선택 기준 | - | PLANNED |
-| **ch13. Oracle 연결** | Oracle JDBC, Profile 분리, 접속 설정, 로컬 Oracle 컨테이너 | - | PLANNED |
-| **ch14. Oracle JSON** | JSON 컬럼, `JSON_VALUE`/`JSON_QUERY`/`JSON_TABLE`, JSON 타입과 CLOB 차이 | - | PLANNED |
-| **ch15. JSON과 Java 객체 변환** | Jackson, MyBatis `TypeHandler`로 JSON 컬럼 매핑 | - | PLANNED |
-| **ch16. DTO, Domain, MapStruct** | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | - | PLANNED |
-| **ch17. OpenAPI와 Swagger UI** | springdoc, 애노테이션, Swagger UI | - | PLANNED |
-| **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | - | PLANNED |
-| **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | - | PLANNED |
-| **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | - | PLANNED |
-| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | - | PLANNED |
-| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | - | PLANNED |
-| **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - | PLANNED |
-| **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - | PLANNED |
-| **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | - | PLANNED |
-| **ch26. Modular Monolith** | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | - | PLANNED |
-| **ch27. JUnit과 Mockito** | 단위 테스트, Mock, 검증 | - | PLANNED |
-| **ch28. 계층별 테스트** | Controller, Service, MyBatis 테스트 | - | PLANNED |
-| **ch29. 통합 테스트** | `@SpringBootTest`, 테스트 데이터, 컨테이너 | - | PLANNED |
-| **ch30. Spring Security** | 인증/인가, SecurityFilterChain, 테스트 | - | PLANNED |
-| **ch31. Logging과 Actuator** | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | - | PLANNED |
-| **ch32. Docker** | 멀티 스테이지 빌드, 이미지 실행, compose | - | PLANNED |
-| **ch33. GitHub Actions와 CI/CD** | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | - | PLANNED |
-| **f01~f04. 종합 프로젝트** | 설계, 백엔드, 화면과 문서, 품질과 배포 | `projects/final-project` | PLANNED |
+| 챕터 | 주요 학습 내용 | 예제 모듈 |
+|:---|:---|:---|
+| **ch01. Hello Spring Boot** | Spring Framework와 Boot, Boot 4 특징, 개발 환경, Gradle 프로젝트, 디렉터리 구조, 실행 | [`examples/ch01-hello-spring`](examples/ch01-hello-spring) |
+| **ch02. 설정과 Profile** | application.yml, 외부 설정 우선순위, `@Value`, `@ConfigurationProperties`, Profile | - |
+| **ch03. IoC, DI, Bean** | IoC 컨테이너, 생성자 주입, Bean 등록, Component Scan, Bean 생명주기 | - |
+| **ch04. HTTP와 REST, Controller** | HTTP 메서드, REST 원칙, Controller, `@RequestParam`/`@PathVariable` | - |
+| **ch05. CRUD API와 DTO** | POST/PUT/PATCH/DELETE, `@RequestBody`, Java Record DTO, `ResponseEntity`, Service 계층 | - |
+| **ch06. Validation** | Jakarta Validation, `@Valid`, 제약 애노테이션, 커스텀 검증 | - |
+| **ch07. 예외 처리와 공통 응답** | `@RestControllerAdvice`, 공통 API 응답, 오류 코드 체계 | - |
+| **ch08. DataSource와 H2** | DataSource, 커넥션 풀, H2, 초기 스키마/데이터 | - |
+| **ch09. MyBatis 기본과 CRUD** | Mapper Interface, XML Mapper, `resultMap`, CRUD | - |
+| **ch10. 동적 SQL, JOIN, 페이징** | `<if>`/`<where>`/`<foreach>`, JOIN 매핑, 페이징 | - |
+| **ch11. 트랜잭션** | `@Transactional`, 전파/롤백 규칙, 경계 설계 | - |
+| **ch12. MyBatis-Plus로 반복 CRUD 줄이기** | `BaseMapper`, `LambdaQueryWrapper`, 페이징 플러그인, XML Mapper와 공존, MyBatis와의 선택 기준 | - |
+| **ch13. Oracle 연결** | Oracle JDBC, Profile 분리, 접속 설정, 로컬 Oracle 컨테이너 | - |
+| **ch14. Oracle JSON** | JSON 컬럼, `JSON_VALUE`/`JSON_QUERY`/`JSON_TABLE`, JSON 타입과 CLOB 차이 | - |
+| **ch15. JSON과 Java 객체 변환** | Jackson, MyBatis `TypeHandler`로 JSON 컬럼 매핑 | - |
+| **ch16. DTO, Domain, MapStruct** | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | - |
+| **ch17. OpenAPI와 Swagger UI** | springdoc, 애노테이션, Swagger UI | - |
+| **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | - |
+| **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | - |
+| **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | - |
+| **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | - |
+| **ch22. React와 REST API 연동** | fetch, CORS, React CRUD, Thymeleaf와 비교 | - |
+| **ch23. Layered Architecture와 SOLID** | 계층 책임, SOLID, DIP, Interface/Implementation | - |
+| **ch24. Contract와 Port/Adapter** | Domain Model, Contract Interface, Port/Adapter, Internal/External API | - |
+| **ch25. Composite와 Orchestration** | Composite, Orchestration, 책임 분리 | - |
+| **ch26. Modular Monolith** | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | - |
+| **ch27. JUnit과 Mockito** | 단위 테스트, Mock, 검증 | - |
+| **ch28. 계층별 테스트** | Controller, Service, MyBatis 테스트 | - |
+| **ch29. 통합 테스트** | `@SpringBootTest`, 테스트 데이터, 컨테이너 | - |
+| **ch30. Spring Security** | 인증/인가, SecurityFilterChain, 테스트 | - |
+| **ch31. Logging과 Actuator** | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | - |
+| **ch32. Docker** | 멀티 스테이지 빌드, 이미지 실행, compose | - |
+| **ch33. GitHub Actions와 CI/CD** | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | - |
+| **f01~f04. 종합 프로젝트** | 설계, 백엔드, 화면과 문서, 품질과 배포 | `projects/final-project` |
 
-상태 값의 의미는 [docs/CURRICULUM-STATUS.md](docs/CURRICULUM-STATUS.md)를 참고하세요. `DRAFT_READY` 는 코드 검증과 블로그 초안이 끝나 검토를 기다리는 단계입니다.
+예제 모듈이 `-`로 표시된 챕터는 아직 추가되지 않았습니다.
 
 ---
 
@@ -244,11 +242,8 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | 문서 | 내용 |
 |:---|:---|
 | [docs/CURRICULUM.md](docs/CURRICULUM.md) | 전체 커리큘럼, 챕터별 선수학습과 예제 범위 |
-| [docs/CURRICULUM-STATUS.md](docs/CURRICULUM-STATUS.md) | 챕터별 진행 상태, 빌드·테스트·CI 결과, 검증 커밋 |
 | [docs/TECH-STACK.md](docs/TECH-STACK.md) | 확정 라이브러리 버전과 Spring Boot 4 변경 사항 |
-| [docs/CODE-DOC-MAPPING.md](docs/CODE-DOC-MAPPING.md) | 예제 코드와 블로그 글의 대응표 |
-| [docs/PUBLISHING-GUIDE.md](docs/PUBLISHING-GUIDE.md) | 블로그 게시 인계 규칙 |
-| `docs/chapters/chNN/` | 챕터별 README, 블로그 초안, 검증 기록 |
+| `docs/chapters/chNN/` | 챕터별 학습 목표와 범위 |
 
 ---
 
@@ -267,7 +262,7 @@ JDK 21이 설치되어 있지 않을 때 발생합니다(JDK 17로 실행해도 
 다른 프로세스가 8080 포트를 사용 중입니다. 해당 프로세스를 종료하거나 JAR 실행 시 `--server.port=8081` 로 포트를 바꾸십시오.
 
 ### Q. Gradle Daemon 관련 연결/소켓 오류가 발생합니다.
-백그라운드 데몬 프로세스 충돌이나 방화벽·샌드박스 환경의 로컬호스트 연결 제한일 수 있습니다. `--no-daemon` 플래그를 붙여 단독 프로세스로 실행하십시오:
+백그라운드 데몬 프로세스 충돌이나 방화벽이나 보안 프로그램의 로컬호스트 연결 제한일 수 있습니다. `--no-daemon` 플래그를 붙여 단독 프로세스로 실행하십시오:
 ```bash
 ./gradlew --no-daemon build
 ```
