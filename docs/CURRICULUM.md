@@ -7,17 +7,17 @@
 
 ## 전체 구성
 
-총 8개 Part, 36개 챕터 (ch01~ch32 + 종합 프로젝트 f01~f04).
+총 8개 Part, 37개 챕터 (ch01~ch33 + 종합 프로젝트 f01~f04).
 
 | Part | 주제 | 챕터 |
 |---|---|---|
 | 01 | Spring Boot 입문 | ch01~ch03 |
 | 02 | Spring MVC 및 REST API | ch04~ch07 |
-| 03 | Database 및 MyBatis | ch08~ch14 |
-| 04 | MapStruct 및 API 명세 | ch15~ch17 |
-| 05 | 화면 개발 | ch18~ch21 |
-| 06 | 실무 아키텍처 | ch22~ch25 |
-| 07 | 테스트 및 운영 | ch26~ch32 |
+| 03 | Database 및 MyBatis | ch08~ch15 |
+| 04 | MapStruct 및 API 명세 | ch16~ch18 |
+| 05 | 화면 개발 | ch19~ch22 |
+| 06 | 실무 아키텍처 | ch23~ch26 |
+| 07 | 테스트 및 운영 | ch27~ch33 |
 | 08 | 종합 프로젝트 | f01~f04 |
 
 ## Part 01. Spring Boot 입문
@@ -45,35 +45,36 @@
 | ch09 | MyBatis 기본과 CRUD | Mapper Interface, XML Mapper, `resultMap`, CRUD | 사용자 CRUD (H2) | ch08 |
 | ch10 | 동적 SQL, JOIN, 페이징 | `<if>`/`<where>`/`<foreach>`, JOIN 매핑, 페이징 | 검색 조건 조합, 게시글-작성자 JOIN, 페이지 응답 | ch09 |
 | ch11 | 트랜잭션 | `@Transactional`, 전파/롤백 규칙, 경계 설계 | 실패 시 롤백 테스트 | ch09 |
-| ch12 | Oracle 연결 | Oracle JDBC, Profile 분리, 접속 설정, 로컬 Oracle 컨테이너 | `oracle` Profile, 연결 테스트(분리 실행) | ch02, ch09 |
-| ch13 | Oracle JSON | JSON 컬럼, `JSON_VALUE`/`JSON_QUERY`/`JSON_TABLE`, JSON 타입과 CLOB 차이 | JSON 저장과 질의 SQL (Oracle 필요) | ch12 |
-| ch14 | JSON과 Java 객체 변환 | Jackson, MyBatis `TypeHandler`로 JSON 컬럼 매핑 | JSON 컬럼 <-> record 변환 | ch13 |
+| ch12 | MyBatis-Plus로 반복 CRUD 줄이기 | `BaseMapper`, `LambdaQueryWrapper`, 페이징 플러그인, XML Mapper와 공존, MyBatis와의 선택 기준 | ch09 사용자 CRUD를 MyBatis-Plus로 재작성하고 같은 테스트 통과, 복잡한 질의는 XML로 유지 | ch09, ch11 |
+| ch13 | Oracle 연결 | Oracle JDBC, Profile 분리, 접속 설정, 로컬 Oracle 컨테이너 | `oracle` Profile, 연결 테스트(분리 실행) | ch02, ch09 |
+| ch14 | Oracle JSON | JSON 컬럼, `JSON_VALUE`/`JSON_QUERY`/`JSON_TABLE`, JSON 타입과 CLOB 차이 | JSON 저장과 질의 SQL (Oracle 필요) | ch13 |
+| ch15 | JSON과 Java 객체 변환 | Jackson, MyBatis `TypeHandler`로 JSON 컬럼 매핑 | JSON 컬럼 <-> record 변환 | ch14 |
 
 ## Part 04. MapStruct 및 API 명세
 
 | 챕터 | 제목 | 다루는 내용 | 예제 범위 | 선수학습 |
 |---|---|---|---|---|
-| ch15 | DTO, Domain, MapStruct | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | 요청/응답 DTO 변환 | ch09 |
-| ch16 | OpenAPI와 Swagger UI | springdoc, 애노테이션, Swagger UI | 기존 API 문서화 | ch07 |
-| ch17 | API Contract | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | 외부 Contract 패키지 분리 | ch15, ch16 |
+| ch16 | DTO, Domain, MapStruct | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | 요청/응답 DTO 변환 | ch09 |
+| ch17 | OpenAPI와 Swagger UI | springdoc, 애노테이션, Swagger UI | 기존 API 문서화 | ch07 |
+| ch18 | API Contract | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | 외부 Contract 패키지 분리 | ch16, ch17 |
 
 ## Part 05. 화면 개발
 
 | 챕터 | 제목 | 다루는 내용 | 예제 범위 | 선수학습 |
 |---|---|---|---|---|
-| ch18 | Thymeleaf 기초 | Model, Template, 반복/조건, Layout | 목록/상세 화면 | ch05 |
-| ch19 | Thymeleaf CRUD | Form 바인딩, 검증 오류 표시, PRG 패턴 | 사용자 등록/수정/삭제 화면 | ch06, ch18 |
-| ch20 | React 기초 | Vite, 컴포넌트, Hooks, Router | 정적 목록 화면 | JavaScript 기본 |
-| ch21 | React와 REST API 연동 | fetch, CORS, React CRUD, Thymeleaf와 비교 | API 연동 CRUD 화면 | ch05, ch20 |
+| ch19 | Thymeleaf 기초 | Model, Template, 반복/조건, Layout | 목록/상세 화면 | ch05 |
+| ch20 | Thymeleaf CRUD | Form 바인딩, 검증 오류 표시, PRG 패턴 | 사용자 등록/수정/삭제 화면 | ch06, ch19 |
+| ch21 | React 기초 | Vite, 컴포넌트, Hooks, Router | 정적 목록 화면 | JavaScript 기본 |
+| ch22 | React와 REST API 연동 | fetch, CORS, React CRUD, Thymeleaf와 비교 | API 연동 CRUD 화면 | ch05, ch21 |
 
 ## Part 06. 실무 아키텍처
 
 | 챕터 | 제목 | 다루는 내용 | 예제 범위 | 선수학습 |
 |---|---|---|---|---|
-| ch22 | Layered Architecture와 SOLID | 계층 책임, SOLID, DIP, Interface/Implementation | 계층 위반 코드 리팩터링 | ch09 |
-| ch23 | Contract와 Port/Adapter | Domain Model, Contract Interface, Port/Adapter, Internal/External API | 외부 연동을 Port 뒤로 숨김 | ch17, ch22 |
-| ch24 | Composite와 Orchestration | Composite, Orchestration, 책임 분리 | 여러 서비스를 조합하는 Orchestrator | ch23 |
-| ch25 | Modular Monolith | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | 모듈 분리와 의존성 검증 테스트 | ch11, ch24 |
+| ch23 | Layered Architecture와 SOLID | 계층 책임, SOLID, DIP, Interface/Implementation | 계층 위반 코드 리팩터링 | ch09 |
+| ch24 | Contract와 Port/Adapter | Domain Model, Contract Interface, Port/Adapter, Internal/External API | 외부 연동을 Port 뒤로 숨김 | ch18, ch23 |
+| ch25 | Composite와 Orchestration | Composite, Orchestration, 책임 분리 | 여러 서비스를 조합하는 Orchestrator | ch24 |
+| ch26 | Modular Monolith | 모듈 경계, 의존성 방향, 순환참조 차단, 트랜잭션 경계 | 모듈 분리와 의존성 검증 테스트 | ch11, ch25 |
 
 Contract는 Spring Boot 내장 기능이 아니라 API 계약과 인터페이스 기반 설계 개념으로 설명한다.
 
@@ -81,13 +82,13 @@ Contract는 Spring Boot 내장 기능이 아니라 API 계약과 인터페이스
 
 | 챕터 | 제목 | 다루는 내용 | 예제 범위 | 선수학습 |
 |---|---|---|---|---|
-| ch26 | JUnit과 Mockito | 단위 테스트, Mock, 검증 | Service 단위 테스트 | ch05 |
-| ch27 | 계층별 테스트 | Controller, Service, MyBatis 테스트 | `@WebMvcTest`, `@MybatisTest` | ch09, ch26 |
-| ch28 | 통합 테스트 | `@SpringBootTest`, 테스트 데이터, 컨테이너 | 전 계층 통합 시나리오 | ch27 |
-| ch29 | Spring Security | 인증/인가, SecurityFilterChain, 테스트 | 로그인과 권한별 접근 제어 | ch07 |
-| ch30 | Logging과 Actuator | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | 로그 레벨, health/metrics | ch02 |
-| ch31 | Docker | 멀티 스테이지 빌드, 이미지 실행, compose | 애플리케이션 이미지 | ch01 |
-| ch32 | GitHub Actions와 CI/CD | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | 빌드/테스트/이미지 빌드 파이프라인 | ch31 |
+| ch27 | JUnit과 Mockito | 단위 테스트, Mock, 검증 | Service 단위 테스트 | ch05 |
+| ch28 | 계층별 테스트 | Controller, Service, MyBatis 테스트 | `@WebMvcTest`, `@MybatisTest` | ch09, ch27 |
+| ch29 | 통합 테스트 | `@SpringBootTest`, 테스트 데이터, 컨테이너 | 전 계층 통합 시나리오 | ch28 |
+| ch30 | Spring Security | 인증/인가, SecurityFilterChain, 테스트 | 로그인과 권한별 접근 제어 | ch07 |
+| ch31 | Logging과 Actuator | 로깅 설정, 구조화 로그, Actuator, 헬스 체크 | 로그 레벨, health/metrics | ch02 |
+| ch32 | Docker | 멀티 스테이지 빌드, 이미지 실행, compose | 애플리케이션 이미지 | ch01 |
+| ch33 | GitHub Actions와 CI/CD | 워크플로, 캐시, 아티팩트, 운영 환경 설정 | 빌드/테스트/이미지 빌드 파이프라인 | ch32 |
 
 ## Part 08. 종합 프로젝트: 사용자·게시판 관리 시스템
 
@@ -99,6 +100,12 @@ Contract는 Spring Boot 내장 기능이 아니라 API 계약과 인터페이스
 | f02 | 백엔드 | 사용자/게시글 CRUD, 검색과 페이징, MyBatis, Oracle JSON, MapStruct, Validation, 예외 처리 |
 | f03 | 화면과 문서 | Thymeleaf 화면, React 화면, Swagger |
 | f04 | 품질과 배포 | 테스트, Spring Security, Docker, GitHub Actions |
+
+## MyBatis-Plus 적용 방침
+
+- ch09~ch11은 MyBatis(XML Mapper, 동적 SQL, 트랜잭션)로 SQL 매핑 원리를 먼저 익힌다.
+- ch12에서 MyBatis-Plus를 별도로 다룬다. 단순 CRUD와 페이징만 MyBatis-Plus로 줄이고, Oracle JSON(ch14~ch15)과 JOIN 같은 복잡한 질의는 XML Mapper로 유지한다.
+- 종합 프로젝트도 같은 기준을 따른다.
 
 ## 진행 원칙
 

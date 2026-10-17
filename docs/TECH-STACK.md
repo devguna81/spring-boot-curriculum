@@ -13,11 +13,12 @@
 | Gradle 플러그인 | io.spring.dependency-management | 1.1.7 | ch01 | Initializr 기본값 |
 | Test | JUnit 5 / Mockito / Spring Boot Test | Boot BOM 관리 | ch01 | `spring-boot-starter-webmvc-test` |
 | Persistence | mybatis-spring-boot-starter | 4.1.0 | ch09 | 부모 POM의 `spring-boot.version`이 4.1.0 (MyBatis 3.5.19) |
-| API 문서 | springdoc-openapi-starter-webmvc-ui | 3.1.1 | ch16 | 부모 POM이 `spring-boot-starter-parent:4.1.0` |
-| Mapping | MapStruct | 1.6.3 | ch15 | 최신 안정판. 1.7.0은 Beta라 제외 |
+| Persistence (확장) | mybatis-plus-spring-boot4-starter + mybatis-plus-jsqlparser | 3.5.17 | ch12 | Boot 4 전용 스타터. 아래 "MyBatis-Plus 검토" 참조 |
+| API 문서 | springdoc-openapi-starter-webmvc-ui | 3.1.1 | ch17 | 부모 POM이 `spring-boot-starter-parent:4.1.0` |
+| Mapping | MapStruct | 1.6.3 | ch16 | 최신 안정판. 1.7.0은 Beta라 제외 |
 | DB (개발) | H2 | Boot BOM 관리 | ch08 | Boot가 버전을 관리 |
-| DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch12 | Java 11+ 용 드라이버, Maven Central 최신 |
-| Frontend | React + Vite | 해당 챕터에서 확정 | ch20 | Node LTS 기준으로 그 시점에 재확인 |
+| DB (운영 가정) | Oracle JDBC ojdbc11 | 23.26.3.0.0 | ch13 | Java 11+ 용 드라이버, Maven Central 최신 |
+| Frontend | React + Vite | 해당 챕터에서 확정 | ch21 | Node LTS 기준으로 그 시점에 재확인 |
 
 ## Boot 4에서 달라진 점 (실측)
 
@@ -33,10 +34,24 @@
 
 위 패키지 경로는 `spring-boot-webmvc-test-4.1.1.jar`의 클래스 목록으로 확인했다.
 
+## MyBatis-Plus 검토 (2026-10-17)
+
+| 항목 | 내용 |
+|---|---|
+| 스타터 | `com.baomidou:mybatis-plus-spring-boot4-starter:3.5.17` (Boot 3용 `-spring-boot3-starter`와 별도 아티팩트) |
+| 빌드 기준 | 스타터 POM이 Boot **4.0.1**, mybatis-spring **4.0.0** 기준이다. 이 저장소의 Boot 4.1.1과 공식 스타터(mybatis-spring 4.1.0)보다 한 단계 늦다 |
+| 페이징 | 3.5.9 이후 `PaginationInnerInterceptor`를 쓰려면 `mybatis-plus-jsqlparser` 의존성을 따로 추가해야 한다 |
+| 적용 범위 | MyBatis를 대체하지 않고 ch12에서 단순 CRUD 축소용으로 병행한다. XML Mapper와 공존한다 |
+
+**호환성 실측 (Boot 4.1.1 + H2 Oracle 모드, JDK 21, 임시 프로젝트):**
+`BaseMapper` 삽입/조회/수정/삭제, `LambdaQueryWrapper`, `Page` 페이징(Oracle 방언), XML Mapper 동적 SQL 공존, `IdType.AUTO` 키 생성을 확인했다. 테스트 1건 통과.
+
+**아직 확인하지 못한 것:** 실제 Oracle(시퀀스 `@KeySequence`, JSON 컬럼 `TypeHandler`)과의 조합은 ch12~ch15에서 검증한다. 스타터가 4.0.1 기준이라 Boot 마이너 업그레이드 때 호환성을 다시 확인해야 한다.
+
 ## 미확정 · 추후 검증 항목
 
 - MyBatis 4.1.0 + Boot 4.1.1 조합: 부모 POM 기준으로만 확인했다. ch09에서 실제 빌드로 검증한 뒤 이 표를 갱신한다.
-- springdoc 3.1.1 + Boot 4.1.1: 위와 동일하게 ch16에서 검증한다.
+- springdoc 3.1.1 + Boot 4.1.1: 위와 동일하게 ch17에서 검증한다.
 - Oracle: 로컬에 Oracle 인스턴스가 없다. Oracle 의존 테스트는 `oracle` 프로파일로 분리하고, 실행하지 못하면 `미검증`으로 기록한다.
 
 ## 개발 환경
