@@ -36,6 +36,17 @@ class ContractValidationTests {
     }
 
     @Test
+    void passwordIsLimitedByUtf8BytesNotByCharacters() {
+        // 72바이트: 한글 24자는 통과, 25자(75바이트)는 글자 수가 72 이하여도 거부
+        assertThat(validator.validate(new SignupRequest("kim_01", "가".repeat(24), "Kim"))).isEmpty();
+        var violations = validator.validate(new SignupRequest("kim_01", "가".repeat(25), "Kim"));
+
+        assertThat(fieldsOf(violations)).containsExactly("password");
+        assertThat(validator.validate(new SignupRequest("kim_01", "a".repeat(72), "Kim"))).isEmpty();
+        assertThat(validator.validate(new SignupRequest("kim_01", "a".repeat(73), "Kim"))).isNotEmpty();
+    }
+
+    @Test
     void postRequestLimitsTagCountAndTagLength() {
         var tooMany = new PostRequest("t", "c", List.of("a", "b", "c", "d", "e", "f"), null);
         var longTag = new PostRequest("t", "c", List.of("x".repeat(21)), null);

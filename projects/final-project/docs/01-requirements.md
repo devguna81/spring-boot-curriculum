@@ -16,7 +16,7 @@
 
 | 항목 | 기준 |
 |---|---|
-| 인증 | HTTP Basic, 세션 없음. 비밀번호는 bcrypt 해시로 저장 |
+| 인증 | HTTP Basic, 세션 없음. 비밀번호는 bcrypt 해시로 저장하며 8자 이상, UTF-8 72바이트 이하(bcrypt 제한) |
 | 오류 응답 | 모든 오류는 `code`, `message`, `issues` 형식 |
 | 데이터베이스 | 기본 H2, `oracle` 프로파일에서 Oracle(JSON 컬럼) |
 | 화면 | 서버 렌더링(Thymeleaf) 읽기 화면, React 작성 화면, Swagger 문서 |
