@@ -42,18 +42,18 @@ Boot 3 자료의 코드를 그대로 가져오면 컴파일되지 않는 지점�
 | 페이징 | 3.5.9 이후 `PaginationInnerInterceptor`를 쓰려면 `mybatis-plus-jsqlparser` 의존성을 따로 추가해야 한다 |
 | 사용 범위 | MyBatis를 대체하지 않고 ch12에서 단순 CRUD를 줄이는 용도로 함께 쓴다. XML Mapper와 같이 쓸 수 있다 |
 
-Oracle 시퀀스(`@KeySequence`)와 JSON 컬럼 `TypeHandler` 조합은 ch12~ch15에서 다룬다. Boot 마이너 버전을 올릴 때는 스타터 호환성을 다시 확인한다.
+Oracle 시퀀스(`@KeySequence`)와의 조합은 이 저장소에서 검증하지 않았다. JSON 컬럼은 MyBatis `TypeHandler`로 매핑한다(ch15). Boot 마이너 버전을 올릴 때는 스타터 호환성을 다시 확인한다.
 
 ## 챕터별로 확인할 사항
 
 - ch09: MyBatis starter 4.1.0과 Boot 4.1.1 조합
 - ch17: springdoc 3.1.1과 Boot 4.1.1 조합
-- ch13~ch15: Oracle 접속이 필요한 부분은 `oracle` 프로파일로 분리하고, 기본 빌드에는 포함하지 않는다.
+- ch13~ch15: Oracle 접속이 필요한 테스트는 `ORACLE_URL` 환경 변수가 있을 때만 실행하고, 없으면 건너뛴다. 기본 Profile은 H2다. CI에서는 일회용 Oracle Free 컨테이너(`gvenzl/oracle-free:23-slim-faststart`)를 띄워 별도 잡으로 실행한다.
 
 ## 개발 환경
 
 | 항목 | 값 |
 |---|---|
 | 필수 | JDK 21 (Gradle Toolchain이 21을 요구한다) |
-| 선택 | Docker (Oracle XE, 컨테이너 실습용) |
+| 선택 | Docker (Oracle Free 컨테이너, 컨테이너 실습용) |
 | IDE | IntelliJ IDEA 권장 |

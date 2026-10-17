@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.ch15.ProductMapper">
+
+    <!--
+        attributes의 자바 타입이 ProductAttributes라서 등록된 TypeHandler가 자동으로 적용된다.
+        SQL에는 JSON 변환 코드가 전혀 없다.
+    -->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO product_catalog (name, attributes) VALUES (#{name}, #{attributes})
+    </insert>
+
+    <select id="findById" resultType="Product">
+        SELECT id, name, attributes FROM product_catalog WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="Product">
+        SELECT id, name, attributes FROM product_catalog ORDER BY id
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM product_catalog
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM product_catalog
+    </delete>
+</mapper>

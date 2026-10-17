@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.devguna.curriculum.ch14.ProductMapper">
+
+    <resultMap id="productMap" type="Product">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="attributes" column="attributes"/>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO products (name, attributes) VALUES (#{name}, #{attributes})
+    </insert>
+
+    <insert id="insertClob" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+        INSERT INTO products_clob (name, attributes) VALUES (#{name}, #{attributes})
+    </insert>
+
+    <!-- JSON 타입 컬럼은 JSON_SERIALIZE로 텍스트로 바꿔 읽는다. -->
+    <select id="findById" resultMap="productMap">
+        SELECT id, name, JSON_SERIALIZE(attributes) AS attributes
+        FROM products
+        WHERE id = #{id}
+    </select>
+
+    <select id="findClobById" resultMap="productMap">
+        SELECT id, name, attributes
+        FROM products_clob
+        WHERE id = #{id}
+    </select>
+
+    <select id="findBrand" resultType="string">
+        SELECT JSON_VALUE(attributes, '$.brand')
+        FROM products
+        WHERE id = #{id}
+    </select>
+
+    <select id="findSpecs" resultType="string">
+        SELECT JSON_QUERY(attributes, '$.specs')
+        FROM products
+        WHERE id = #{id}
+    </select>
+
+    <select id="findPriceOver" resultMap="productMap">
+        SELECT id, name, JSON_SERIALIZE(attributes) AS attributes
+        FROM products
+        WHERE JSON_VALUE(attributes, '$.price' RETURNING NUMBER) &gt; #{min}
+        ORDER BY id
+    </select>
+
+    <select id="findPriceOverComparedAsText" resultMap="productMap">
+        SELECT id, name, JSON_SERIALIZE(attributes) AS attributes
+        FROM products
+        WHERE JSON_VALUE(attributes, '$.price') &gt; #{min}
+        ORDER BY id
+    </select>
+
+    <select id="findByTag" resultMap="productMap">
+        SELECT id, name, JSON_SERIALIZE(attributes) AS attributes
+        FROM products
+        WHERE JSON_EXISTS(attributes, '$.tags[*]?(@ == $tag)' PASSING #{tag} AS "tag")
+        ORDER BY id
+    </select>
+
+    <select id="findTags" resultType="string">
+        SELECT jt.tag
+        FROM products p,
+             JSON_TABLE(p.attributes, '$.tags[*]' COLUMNS (tag VARCHAR2(50) PATH '$')) jt
+        WHERE p.id = #{id}
+    </select>
+
+    <select id="count" resultType="long">
+        SELECT COUNT(*) FROM products
+    </select>
+
+    <delete id="deleteAll">
+        DELETE FROM products
+    </delete>
+</mapper>

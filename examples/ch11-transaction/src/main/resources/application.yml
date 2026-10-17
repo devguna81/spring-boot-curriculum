@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: ch11-transaction
+  datasource:
+    url: jdbc:h2:mem:curriculum-${random.uuid}
+    username: sa
+    password: ""
+
+mybatis:
+  # XML Mapper 파일 위치. 인터페이스와 XML의 namespace/id가 이어져야 한다.
+  mapper-locations: classpath:mapper/*.xml
+  # com.devguna.curriculum.ch11.User를 XML에서 User로 줄여 쓴다.
+  type-aliases-package: com.devguna.curriculum.ch11
+  configuration:
+    # created_at 컬럼을 createdAt 필드에 자동으로 연결한다.
+    map-underscore-to-camel-case: true
