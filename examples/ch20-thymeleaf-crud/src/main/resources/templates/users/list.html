@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('사용자 목록')}"></head>
+<body>
+<nav th:replace="~{fragments/layout :: nav}"></nav>
+<h1>사용자 목록</h1>
+<!-- redirect 뒤 한 번만 보이는 안내. Flash 속성은 다음 요청의 Model 로 옮겨진다. -->
+<p th:if="${message}" th:text="${message}" class="message">안내</p>
+<p><a th:href="@{/users/new}">새 사용자</a></p>
+<p th:if="${#lists.isEmpty(users)}">등록된 사용자가 없습니다.</p>
+<table th:unless="${#lists.isEmpty(users)}">
+  <thead>
+    <tr><th>번호</th><th>이름</th><th>이메일</th><th>나이</th><th>관리</th></tr>
+  </thead>
+  <tbody>
+    <tr th:each="user : ${users}">
+      <td th:text="${user.id}">1</td>
+      <td th:text="${user.name}">이름</td>
+      <td th:text="${user.email}">email</td>
+      <td th:text="${user.age}">0</td>
+      <td>
+        <a th:href="@{/users/{id}/edit(id=${user.id})}">수정</a>
+        <form th:action="@{/users/{id}/delete(id=${user.id})}" method="post" style="display:inline">
+          <button type="submit">삭제</button>
+        </form>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
