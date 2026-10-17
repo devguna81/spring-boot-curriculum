@@ -37,7 +37,7 @@ COPY --from=build /extracted/application/ ./
 
 EXPOSE 8080
 
-# JRE 이미지에는 curl이 없어서 bash의 /dev/tcp로 헬스 엔드포인트를 확인한다.
+# 더 작은 실행 이미지로 바꿔도 동작하도록 curl 대신 bash의 /dev/tcp로 헬스 엔드포인트를 확인한다.
 HEALTHCHECK --interval=10s --timeout=3s --start-period=40s --retries=3 \
   CMD bash -c 'exec 3<>/dev/tcp/127.0.0.1/8080 && printf "GET /actuator/health/liveness HTTP/1.0\r\n\r\n" >&3 && grep -q "\"UP\"" <&3' || exit 1
 
