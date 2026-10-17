@@ -260,6 +260,22 @@ export ORACLE_PASSWORD='<위에서 정한 ORACLE_APP_PASSWORD>'
 
 `ORACLE_URL` 환경 변수가 없으면 Oracle 테스트는 건너뜁니다.
 
+#### API 문서 보기 (Chapter 17)
+
+```bash
+./gradlew :examples:ch17-openapi:bootRun
+# 브라우저에서 http://localhost:8080/swagger-ui.html
+curl http://localhost:8080/v3/api-docs
+```
+
+#### 계약 저장본 갱신 (Chapter 18)
+
+계약을 의도해서 바꿨다면 호환성을 확인한 뒤 저장본을 갱신합니다.
+
+```bash
+./gradlew :examples:ch18-api-contract:test -Dcontract.update=true
+```
+
 ### 5. 테스트 결과 확인
 
 ```bash
@@ -324,9 +340,9 @@ Part별 구성은 다음과 같습니다. 챕터별 선수학습과 예제 범�
 | **ch13. Oracle 연결** | Oracle JDBC, Profile 분리, 접속 설정, 로컬 Oracle 컨테이너 | [`examples/ch13-oracle-connection`](examples/ch13-oracle-connection) |
 | **ch14. Oracle JSON** | JSON 컬럼, `JSON_VALUE`/`JSON_QUERY`/`JSON_TABLE`, JSON 타입과 CLOB 차이 | [`examples/ch14-oracle-json`](examples/ch14-oracle-json) |
 | **ch15. JSON과 Java 객체 변환** | Jackson, MyBatis `TypeHandler`로 JSON 컬럼 매핑 | [`examples/ch15-json-typehandler`](examples/ch15-json-typehandler) |
-| **ch16. DTO, Domain, MapStruct** | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | - |
-| **ch17. OpenAPI와 Swagger UI** | springdoc, 애노테이션, Swagger UI | - |
-| **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | - |
+| **ch16. DTO, Domain, MapStruct** | DTO와 Domain 분리, MapStruct 매핑, 컴파일 타임 생성 코드 | [`examples/ch16-mapstruct`](examples/ch16-mapstruct) |
+| **ch17. OpenAPI와 Swagger UI** | springdoc, 애노테이션, Swagger UI | [`examples/ch17-openapi`](examples/ch17-openapi) |
+| **ch18. API Contract** | Request/Response Contract, 내부 DTO와 외부 Contract 분리, 변경 관리 | [`examples/ch18-api-contract`](examples/ch18-api-contract) |
 | **ch19. Thymeleaf 기초** | Model, Template, 반복/조건, Layout | - |
 | **ch20. Thymeleaf CRUD** | Form 바인딩, 검증 오류 표시, PRG 패턴 | - |
 | **ch21. React 기초** | Vite, 컴포넌트, Hooks, Router | - |
