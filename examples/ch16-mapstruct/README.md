@@ -23,7 +23,7 @@ ch16-mapstruct/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch16/
+    │   ├── java/com/jqdom/curriculum/ch16/
     │   │   ├── Ch16Application.java
     │   │   ├── ClockConfig.java
     │   │   ├── CreateMemberRequest.java
@@ -37,7 +37,7 @@ ch16-mapstruct/
     │   │   └── PatchMemberRequest.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch16/
+    └── test/java/com/jqdom/curriculum/ch16/
         ├── Ch16ApplicationTests.java
         ├── MemberApiTests.java
         └── MemberMapperTests.java

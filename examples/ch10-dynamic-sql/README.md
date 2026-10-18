@@ -23,7 +23,7 @@ ch10-dynamic-sql/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch10/
+    │   ├── java/com/jqdom/curriculum/ch10/
     │   │   ├── Ch10Application.java
     │   │   ├── PageResponse.java
     │   │   ├── PostController.java
@@ -38,7 +38,7 @@ ch10-dynamic-sql/
     │       ├── mapper/
     │       │   └── PostMapper.xml
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch10/
+    └── test/java/com/jqdom/curriculum/ch10/
         ├── Ch10ApplicationTests.java
         ├── PostApiTests.java
         └── PostMapperTests.java

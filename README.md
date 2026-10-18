@@ -29,7 +29,7 @@ Spring Boot 입문부터 REST API, MyBatis와 Oracle JSON, MapStruct와 OpenAPI,
 
 ```bash
 # 저장소 복제
-git clone https://github.com/devguna81/spring-boot-curriculum.git
+git clone https://github.com/jqdom81/spring-boot-curriculum.git
 
 # 프로젝트 디렉토리 이동
 cd spring-boot-curriculum
@@ -482,5 +482,5 @@ Spring Boot 4에서는 웹 스타터 이름(`spring-boot-starter-webmvc`)과 `@A
 ## 관련 링크 (References)
 
 - **공식 온라인 커리큘럼**: [jqdom.com Spring Boot Curriculum](https://jqdom.com/blog?categoryId=46)
-- **저장소 이슈 등록**: [GitHub Issues](https://github.com/devguna81/spring-boot-curriculum/issues)
-- **Java 기초가 필요하다면**: [Java Learning 예제 저장소](https://github.com/devguna81/java-learning)
+- **저장소 이슈 등록**: [GitHub Issues](https://github.com/jqdom81/spring-boot-curriculum/issues)
+- **Java 기초가 필요하다면**: [Java Learning 예제 저장소](https://github.com/jqdom81/java-learning)

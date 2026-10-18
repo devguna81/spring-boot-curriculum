@@ -23,7 +23,7 @@ ch05-crud-api/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch05/
+    │   ├── java/com/jqdom/curriculum/ch05/
     │   │   ├── Ch05Application.java
     │   │   ├── CreateUserRequest.java
     │   │   ├── PatchUserRequest.java
@@ -35,7 +35,7 @@ ch05-crud-api/
     │   │   └── UserService.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch05/
+    └── test/java/com/jqdom/curriculum/ch05/
         ├── Ch05ApplicationTests.java
         ├── UserApiTests.java
         └── UserServiceUnitTests.java

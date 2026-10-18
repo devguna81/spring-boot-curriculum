@@ -24,7 +24,7 @@ ch23-layered-solid/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch23/
+    │   ├── java/com/jqdom/curriculum/ch23/
     │   │   ├── Ch23Application.java
     │   │   ├── domain/
     │   │   │   └── User.java
@@ -45,7 +45,7 @@ ch23-layered-solid/
     │   │       └── UserResponse.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch23/
+    └── test/java/com/jqdom/curriculum/ch23/
         ├── ArchitectureTests.java
         ├── Ch23ApplicationTests.java
         ├── UserApiTests.java

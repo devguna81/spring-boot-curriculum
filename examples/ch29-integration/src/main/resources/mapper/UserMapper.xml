@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.devguna.curriculum.ch29.UserMapper">
+<mapper namespace="com.jqdom.curriculum.ch29.UserMapper">
 
     <!-- 컬럼과 필드의 연결을 명시한다. 자동 매핑이 되는 컬럼도 적어 두면 읽는 사람이 한눈에 본다. -->
     <resultMap id="userResultMap" type="User">

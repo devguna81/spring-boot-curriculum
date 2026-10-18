@@ -23,7 +23,7 @@ ch09-mybatis-basics/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch09/
+    │   ├── java/com/jqdom/curriculum/ch09/
     │   │   ├── Ch09Application.java
     │   │   ├── User.java
     │   │   ├── UserController.java
@@ -37,7 +37,7 @@ ch09-mybatis-basics/
     │       ├── mapper/
     │       │   └── UserMapper.xml
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch09/
+    └── test/java/com/jqdom/curriculum/ch09/
         ├── Ch09ApplicationTests.java
         ├── UserApiTests.java
         └── UserMapperTests.java

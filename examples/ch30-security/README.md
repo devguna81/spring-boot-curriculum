@@ -24,7 +24,7 @@ ch30-security/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch30/
+    │   ├── java/com/jqdom/curriculum/ch30/
     │   │   ├── ApiController.java
     │   │   ├── Ch30Application.java
     │   │   ├── Note.java
@@ -32,7 +32,7 @@ ch30-security/
     │   │   └── SecurityConfig.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch30/
+    └── test/java/com/jqdom/curriculum/ch30/
         ├── Ch30ApplicationTests.java
         └── SecurityApiTests.java
 ```

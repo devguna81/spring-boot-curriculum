@@ -23,7 +23,7 @@ ch18-api-contract/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch18/
+    │   ├── java/com/jqdom/curriculum/ch18/
     │   │   ├── Ch18Application.java
     │   │   ├── contract/
     │   │   │   ├── CreateUserRequest.java
@@ -45,7 +45,7 @@ ch18-api-contract/
     │   └── resources/
     │       └── application.yml
     └── test/
-        ├── java/com/devguna/curriculum/ch18/
+        ├── java/com/jqdom/curriculum/ch18/
         │   ├── ArchitectureTests.java
         │   ├── Ch18ApplicationTests.java
         │   ├── ContractDiff.java

@@ -24,7 +24,7 @@ ch25-composite-orchestration/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch25/
+    │   ├── java/com/jqdom/curriculum/ch25/
     │   │   ├── Ch25Application.java
     │   │   ├── inventory/
     │   │   │   ├── InMemoryInventoryService.java
@@ -56,7 +56,7 @@ ch25-composite-orchestration/
     │   │       └── OrderRequest.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch25/
+    └── test/java/com/jqdom/curriculum/ch25/
         ├── Ch25ApplicationTests.java
         ├── CompositeDiscountRuleTests.java
         ├── OrderApiTests.java

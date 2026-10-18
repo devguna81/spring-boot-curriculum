@@ -23,14 +23,14 @@ ch04-rest-controller/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch04/
+    │   ├── java/com/jqdom/curriculum/ch04/
     │   │   ├── Ch04Application.java
     │   │   ├── User.java
     │   │   ├── UserController.java
     │   │   └── UserStore.java
     │   └── resources/
     │       └── application.yml
-    └── test/java/com/devguna/curriculum/ch04/
+    └── test/java/com/jqdom/curriculum/ch04/
         ├── Ch04ApplicationTests.java
         └── UserControllerTests.java
 ```

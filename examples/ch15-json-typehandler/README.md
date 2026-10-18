@@ -24,7 +24,7 @@ ch15-json-typehandler/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch15/
+    │   ├── java/com/jqdom/curriculum/ch15/
     │   │   ├── Ch15Application.java
     │   │   ├── JsonTypeHandler.java
     │   │   ├── Product.java
@@ -40,7 +40,7 @@ ch15-json-typehandler/
     │       ├── oracle/
     │       │   └── schema-oracle.sql
     │       └── schema-h2.sql
-    └── test/java/com/devguna/curriculum/ch15/
+    └── test/java/com/jqdom/curriculum/ch15/
         ├── Ch15ApplicationTests.java
         ├── JsonTypeHandlerUnitTests.java
         ├── OracleJsonColumnTests.java

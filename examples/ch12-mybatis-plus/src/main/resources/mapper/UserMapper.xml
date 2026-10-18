@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.devguna.curriculum.ch12.UserMapper">
+<mapper namespace="com.jqdom.curriculum.ch12.UserMapper">
 
-    <select id="findOlderThan" resultType="com.devguna.curriculum.ch12.User">
+    <select id="findOlderThan" resultType="com.jqdom.curriculum.ch12.User">
         SELECT id, name, email, age, created_at
         FROM users
         WHERE age &gt; #{age}

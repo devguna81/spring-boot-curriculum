@@ -25,7 +25,7 @@ ch13-oracle-connection/
 ├── compose.yml
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch13/
+    │   ├── java/com/jqdom/curriculum/ch13/
     │   │   ├── Ch13Application.java
     │   │   ├── DbInfoController.java
     │   │   ├── User.java
@@ -39,7 +39,7 @@ ch13-oracle-connection/
     │       ├── oracle/
     │       │   └── schema-oracle.sql
     │       └── schema-h2.sql
-    └── test/java/com/devguna/curriculum/ch13/
+    └── test/java/com/jqdom/curriculum/ch13/
         ├── Ch13ApplicationTests.java
         ├── H2ProfileTests.java
         └── OracleConnectionTests.java

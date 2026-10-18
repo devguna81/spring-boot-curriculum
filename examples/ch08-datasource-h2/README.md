@@ -23,7 +23,7 @@ ch08-datasource-h2/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch08/
+    │   ├── java/com/jqdom/curriculum/ch08/
     │   │   ├── Ch08Application.java
     │   │   ├── DataSourceInfoController.java
     │   │   ├── User.java
@@ -33,7 +33,7 @@ ch08-datasource-h2/
     │       ├── application.yml
     │       ├── data.sql
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch08/
+    └── test/java/com/jqdom/curriculum/ch08/
         ├── Ch08ApplicationTests.java
         ├── DataSourceTests.java
         ├── UserApiTests.java

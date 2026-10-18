@@ -23,7 +23,7 @@ ch12-mybatis-plus/
 ├── build.gradle
 └── src/
     ├── main/
-    │   ├── java/com/devguna/curriculum/ch12/
+    │   ├── java/com/jqdom/curriculum/ch12/
     │   │   ├── Ch12Application.java
     │   │   ├── MybatisPlusConfig.java
     │   │   ├── PageResponse.java
@@ -39,7 +39,7 @@ ch12-mybatis-plus/
     │       ├── mapper/
     │       │   └── UserMapper.xml
     │       └── schema.sql
-    └── test/java/com/devguna/curriculum/ch12/
+    └── test/java/com/jqdom/curriculum/ch12/
         ├── Ch12ApplicationTests.java
         ├── UserApiTests.java
         └── UserMapperTests.java
