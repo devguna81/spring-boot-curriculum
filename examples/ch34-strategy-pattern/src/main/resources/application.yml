@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: ch34-strategy-pattern

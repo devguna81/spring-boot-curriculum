@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jqdom.curriculum.ch36.reward.internal.RewardMapper">
+
+    <select id="ledgerByMemberIds" resultType="com.jqdom.curriculum.ch36.reward.internal.LedgerRow">
+        SELECT member_id, amount
+        FROM reward_ledger
+        WHERE member_id IN
+        <foreach collection="ids" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY id
+    </select>
+</mapper>

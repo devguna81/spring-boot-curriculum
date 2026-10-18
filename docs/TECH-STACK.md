@@ -23,6 +23,7 @@
 | DB (컨테이너) | PostgreSQL 서버 / JDBC 드라이버 | 17-alpine / 42.7.13 (Boot BOM 관리) | ch29, ch32 | 실제 DB와의 차이 확인, compose 예제 |
 | 보안 | spring-boot-starter-security (Spring Security 7.1.1) / spring-boot-starter-security-test | Boot BOM 관리 | ch30, f04 | |
 | 운영 | spring-boot-starter-actuator (Micrometer 1.17.1) | Boot BOM 관리 | ch31, ch32, f04 | |
+| AOP | spring-boot-starter-aspectj | Boot BOM 관리 | ch35 | Boot 4.1.1에는 `spring-boot-starter-aop` 아티팩트가 없고 `aspectj` 스타터를 쓴다(Maven Central 확인) |
 | 컨테이너 | Docker / Docker Compose | Engine 29.5.2 / Compose 5.1.4 (검증 환경) | ch32, f04 | 기본 이미지 `eclipse-temurin:21-jdk-jammy`, `-jre-jammy` |
 | CI | GitHub Actions (checkout v7, setup-java v6, setup-gradle v6, setup-node v7, upload-artifact v7, docker/setup-buildx v4, docker/build-push v7) | 2026-10-17 최신 메이저 | ch33, f04 | 이전 v4는 CI 로그에서 사용 중단 경고 |
 | DB (개발) | H2 | Boot BOM 관리 | ch08, f01 | Boot가 버전을 관리 |
